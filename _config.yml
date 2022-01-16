@@ -28,7 +28,7 @@ twitter_username: avdpunks
 github_username:  avdpunks
 
 # Build settings
-theme: jekyll-theme-slate
+theme: jekyll-theme-merlot
 plugins:
   - jekyll-feed
 
