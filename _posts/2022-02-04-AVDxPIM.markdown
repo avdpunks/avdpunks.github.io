@@ -2,9 +2,9 @@
 layout: post
 title:  "Azure Virtual Desktop x Priviliged Identiy Management"
 date:   2022-01-16 15:25:19 +0100
-categories: AVD Security
+categories: AVD
 ---
-# Azure Virtual Desktop (#AVD0) x Priviliged Identiy Management (PIM) #
+# Azure Virtual Desktop (#AVD) x Priviliged Identiy Management (#PIM) #
 
 It's all about security 😅 at least for many of my latest projects and all of them want more security! And there is one question, can we use Azure Virtual Desktop (#AVD) Session Host and Privileged Identity Management (PIM) to add an additional layer of security?
 
@@ -48,7 +48,7 @@ You need at least the role of a **Privileged Role Administrator** or **Global Ad
 Configure PIM as a Privileged Role Administrator or Global Administrator.
 In the Azure Portal, open PIM, select Azure resources and your subscription.
 
-![This image shows the Azure portal and the PIM enabled subscription](../assets/img/2022-02-04-001.png)
+![This image shows the Azure portal and the PIM enabled subscription](../../assets/img/2022-02-04-001.png)
 
 The first thing we want to do is to configure the Settings for the (1) Virtual Machine Administrator Login, for local admin access or (2) Virtual Machine User Login, for user access.
 
