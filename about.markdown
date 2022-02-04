@@ -6,12 +6,12 @@ permalink: /about/
 
 ![AVDpunks](assets/img/avdpunks.png)
 
-Hi there, 
+## Hi user, ## 
 
 we are the AVDPunks - two Microsoft employees with a passion for Azure Virtual Desktop, networking and high-performance computing. 
 Since we constantly improving our skills we started this personal blog to develop and train coding, writing and knowledge sharing skills. Fingers crossed all our code/samples as accurate as possible. 
 
-Who am I (Ben)
+### Who am I (Ben) ###
 
 I am Ben, my "tech" career started in 1995 when I poured my hot chocolate over my father's brand-new Windows NT 3.5 workstation. Imagin I had a VDI at this time, it would have saved me so much trouble.
 Living in a VAN (part time), I know all the ups and downs of a VDI and working from remote 😅
@@ -20,12 +20,10 @@ As an Advanced Cloud Expert (ACE) I am working in a professional technical team 
 
 With a special expertise in Windows Virtual Desktop, client virtualization and other resource-intensive workloads like GPU powered virtualization, I inspire, empower, and support our customers as well as partners to unlock the power of Azure.
 
-[LinkedIn](https://www.linkedin.com/in/ben-martin-baur/)
-
-[GitHub](https://github.com/BenMartinBaur)
+Follow me on [LinkedIn](https://www.linkedin.com/in/ben-martin-baur/) and [GitHub](https://github.com/BenMartinBaur)
 
 
-Who am I (Daniel)
+### Who am I (Daniel) ###
 
 LinkedIn
 
