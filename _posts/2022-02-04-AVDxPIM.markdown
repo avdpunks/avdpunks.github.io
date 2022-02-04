@@ -48,11 +48,11 @@ You need at least the role of a **Privileged Role Administrator** or **Global Ad
 Configure PIM as a Privileged Role Administrator or Global Administrator.
 In the Azure Portal, open PIM, select Azure resources and your subscription.
 
-![This image shows the Azure portal and the PIM enabled subscription](../../assets/img/2022-02-04-001.png)
+![This image shows the Azure portal and the PIM enabled subscription](../assets/img/2022-02-04-001.png)
 
 The first thing we want to do is to configure the Settings for the (1) Virtual Machine Administrator Login, for local admin access or (2) Virtual Machine User Login, for user access.
 
-![This image shows the Azure portal and the PIM enabled subscription](assets/img/2022-02-04-002.png)
+![This image shows the Azure portal and the PIM enabled subscription](../assets/img/2022-02-04-002.png)
 
 In the Settings menu, make sure you select "Require approval for activate" and select an approver. Additionally you can force MFA for the activation process.
 
