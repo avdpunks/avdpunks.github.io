@@ -45,6 +45,10 @@ https://azure.microsoft.com/en-in/services/virtual-desktop/assessment/
 https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency
 
 
+## How to optimize the RTT
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/shortpath
+
 ## Troubleshooting
 
 ### Prerequisites
