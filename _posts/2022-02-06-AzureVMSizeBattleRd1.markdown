@@ -19,6 +19,8 @@ Whether you're running your virtual machine on **Remote Desktop Services (RDS) o
 
 One question Ben and I received quick frequently is how to deliver the **best possible experience**, scale your deployment depending on your users' needs and keep costs on a human level.
 
+<!--more-->
+
 As you may know, on Ignite we released a new Azure Virtual Machine series that deliver better price and performance for most general purpose and memory-intensive workloads, compared to prior virtual machine (VM) generations.
 
 The general availability of the **Dv5 and Ev5 Azure Virtual Machine**, which deliver up to **15% increased performance** for most workloads and can scale up to **96 vCPUs**. These work well for most general computing workloads including AVD.
