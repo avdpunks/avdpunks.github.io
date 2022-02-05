@@ -25,9 +25,13 @@ Follow me on [LinkedIn](https://www.linkedin.com/in/ben-martin-baur/) and [GitHu
 
 ### Who am I (Daniel) ###
 
-LinkedIn
+I am Daniel and I've been in the IT industry since 2008, so I've been steadily expanding my knowledge, but I'm hungry for even more in-depth expertise. 
 
-GitHub
+As a Customer Engineer for Azure Apps & Infrastructure, I provide in-depth technical knowledge and experience for enterprise customers in EMEA. I focused on the architecture and design of end-user computing / VDI infrastructures based on Azure Virtual Desktop and Remote Desktop Services on Windows Server. I also manage devices using Microsoft Endpoint Manager, including app protection design and per-app VPN concepts.
+
+I live IT problems, so I participate in community events and try to help the community. I also want to improve the products to be able to reach more customers. Wherever possible, I like to share my knowledge and show demos about new features.
+
+Follow me on [LinkedIn](https://www.linkedin.com/in/daniel-weppeler/) and [Twitter](https://twitter.com/_danielwep)
 
 So, there you have it... enjoy!
 
