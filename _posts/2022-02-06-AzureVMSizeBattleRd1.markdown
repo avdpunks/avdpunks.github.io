@@ -30,7 +30,7 @@ The new Dasv5 and Easv5 Azure Virtual Machines, which are based on the **3rd Gen
 
 ## What brings us the good old question AMD or Intel and how do they perform?
 
-For these tests, we deployed two **Windows 11 21H2 (build 22000.194) virtual machines** in region West Europe that only connected to **Azure Active Directory (AADJ)** and added to the AVD host pool for personal desktops. The **VM#1 has size D2ds v5** that based on the 3rd Generation Intel Xeon Platinum 8370 and the **VM#2 has size D2ads** that based on the AMD CPU as already mentioned. Both VM sizes included **75GB SSD temp data and Standard SSD 127GB as OS Disk**. 
+For these tests, we deployed two Windows 11 21H2 (build 22000.194) virtual machines in region West Europe that only connected to Azure Active Directory (AADJ) and added to the AVD host pool for personal desktops. The **VM#1 has size D2ds v5** that based on the 3rd Generation Intel Xeon Platinum 8370 and the **VM#2 has size D2ads** that based on the AMD CPU as already mentioned. Both VM sizes included 75GB SSD temp data and Standard SSD 127GB as OS Disk. 
 
 These test runs were performed with connected RDP sessions and each test was run three times. **The result is the average of these 3 tests**, the benchmark points show the higher this value the better the performance in the areas.
 
