@@ -130,4 +130,4 @@ Let’s connect to an AVD session hosts, start a browser (Microsoft Edge, Chrome
 ## Conclusion ##
 
 If you are looking for a quick and easy way to control web content, with a central management for all your endpoints and without deploying additional infrastructure, the Microsoft Defender and the Web Content Filter is a great solution.
-Looking for more? Check the full documentation here: (https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/web-content-filtering?view=o365-worldwide)
+Looking for more? Check the full documentation here: [Web Content Filtering | Doc](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/web-content-filtering?view=o365-worldwide)
