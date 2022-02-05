@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure VM Size Battle Round I:Ddasv5 vs. Ddsv5"
-date:   2022-02-06 11:11:11 +0100
+date:   2022-01-20 11:11:11 +0100
 categories: AVD
 tags: [AVD,Azure,VM]
 ---
