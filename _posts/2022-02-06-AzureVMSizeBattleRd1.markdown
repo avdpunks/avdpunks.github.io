@@ -7,7 +7,7 @@ tags: [AVD,Azure,VM]
 ---
 
 ![2022-02-06-000.png](/assets/img/2022-02-06/2022-02-06-000.png)
-
+# Azure VM Size Battle Round I: Ddasv5 vs. Ddsv5 
 ## Table of contents
 1. [Introduction](#Introduction)
 2. [What brings us the good old question AMD or Intel and how do they perform?](#What-brings-us-the-good-old-question-AMD-or-Intel-and-how-do-they-perform)
