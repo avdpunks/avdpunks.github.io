@@ -114,7 +114,26 @@ These settings are based on the [Virtual-Desktop-Optimization-Tool](https://gith
 
 > The settings for chat icon and widgets are effective only on Windows 11.
 
-> I'm still working on importing JSON templates for device configuration profile into Intune.  
+You can automatically provide these settings in the Intune configuration profile via MS Graph. However, you need a template file with all the optimized settings. Sander Rozemuller has created a JSON template file with these settings, which can be downloaded [here](https://github.com/srozemuller/AVD/blob/main/OperationNorthStar/Configurations/AVD-Optimization/avd-optimization.settings.json).
+
+He also created a snippet to import this JSON template into Intune as a configuration profile.  
+```
+$policyBody = @{
+    "@odata.type"  = "#microsoft.graph.deviceManagementConfigurationPolicy"
+    "name"         = "AVD optimization settings"
+    "description"  = "AVD Best Practices"
+    "platforms"    = "windows10"
+    "technologies" = "mdm"
+    "settings"     = @( 
+        Get-Content ./avd-optimization.settings.json | ConvertFrom-Json
+    )
+}
+$jsonBody = $policyBody | ConvertTo-Json -Depth 99
+$script:PostPolurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
+$policy = Invoke-RestMethod -Uri $script:PostPolurl -Method POST -Headers $script:token -Body $jsonBody -ContentType 'Application/json'
+$policyId = $policy.id
+```
+Click here for the full article by Sander Rozemuller: [Secure and optimize AVD and CloudPC using Microsoft Endpoint Manager]( https://rozemuller.com/secure-and-optimize-avd-and-cloudpc-using-microsoft-endpoint-manager/) 
 
 ## Where is the option "gpupdate /force"?
 
