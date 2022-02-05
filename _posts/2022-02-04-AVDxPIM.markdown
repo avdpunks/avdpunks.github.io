@@ -4,7 +4,7 @@ title:  "Azure Virtual Desktop x Priviliged Identiy Management"
 date:   2022-01-16 15:25:19 +0100
 categories: AVD
 ---
-# Azure Virtual Desktop (#AVD) x Priviliged Identiy Management (#PIM) #
+# Azure Virtual Desktop (#AVD) x Priviliged Identiy Management (#PIM)
 
 It's all about security 😅 at least for many of my latest projects and all of them want more security! And there is one question, can we use Azure Virtual Desktop (#AVD) Session Host and Privileged Identity Management (PIM) to add an additional layer of security?
 
@@ -19,14 +19,17 @@ We will not cover additional hardening with MFA, Conditional Access, Networking 
 
 ## Table of contents
 1. [First of all, what is PIM?](#First-of-all-what-is-PIM)
+2. [What does it do?](#What-does-it-do)
+3. [License requirements](#License-requirements)
+4. [Prerequisites](#Prerequisites)
+5. [Lets get started!](#Lets-get-started)
+6. [Conclusion](#Conclusion)
 
-
-
-## First of all, what is PIM? ##
+## First of all, what is PIM?
 
 Privileged Identity Management (PIM) is a service in Azure Active Directory (Azure AD) that enables you to manage, control, and monitor access to important resources in your organization. These resources include resources in Azure AD, Azure, and other Microsoft Online Services such as Microsoft 365 or Microsoft Intune.
 
-## What does it do? ##
+## What does it do?
 
 Privileged Identity Management provides time-based and approval-based role activation to mitigate the risks of excessive, unnecessary, or misused access permissions on resources that you care about. Here are some of the key features of Privileged Identity Management:
 - Provide just-in-time privileged access to Azure AD and Azure resources
@@ -39,17 +42,17 @@ Privileged Identity Management provides time-based and approval-based role activ
 - Download audit history for internal or external audit
 - Prevents removal of the last active Global Administrator role assignment
 
-## License requirements ##
+## License requirements
 
 Using this feature requires an Azure AD Premium P2 license. To find the right license for your requirements, see Compare generally available features of Azure AD.
 
-## Prerequisites ##
+## Prerequisites
 
 A full functional Azure AD joined session host
 - An Azure AD P2 License
 You need at least the role of a **Privileged Role Administrator** or **Global Administrator**
 
-## Lets get started! ##
+## Lets get started!
 
 Configure PIM as a Privileged Role Administrator or Global Administrator.
 In the Azure Portal, open PIM, select Azure resources and your subscription.
@@ -91,11 +94,12 @@ One more time go back to the Web Client and test the access, BANG! ITWORKS.
 
 In a final check you can revoke the assignment. SPOILER, you can establish a session then.
 
-## Conclusion ##
+## Conclusion
 
 Security is key and with PIM we can add an additional layer of security to our AVD environment. It's still a long way for a real "Privileged Access Workstation" but we are getting there step by step 😉.
 Stay tuned for the second part of this post when we create a PowerApp for the Request process, so your End user doesn't need to access the Azure Portal.
 
-# Resources #
+# Resources
 https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure
+
 https://docs.microsoft.com/en-us/azure/virtual-desktop/deploy-azure-ad-joined-vm
