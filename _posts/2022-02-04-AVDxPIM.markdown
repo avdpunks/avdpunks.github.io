@@ -48,40 +48,40 @@ You need at least the role of a **Privileged Role Administrator** or **Global Ad
 Configure PIM as a Privileged Role Administrator or Global Administrator.
 In the Azure Portal, open PIM, select Azure resources and your subscription.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-001.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-001.png)
 
 The first thing we want to do is to configure the Settings for the (1) Virtual Machine Administrator Login, for local admin access or (2) Virtual Machine User Login, for user access.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-002.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-002.png)
 
 In the Settings menu, make sure you select "Require approval for activate" and select an approver. Additionally you can force MFA for the activation process.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-003.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-003.png)
 
 Next, we configure the Eligible assignments. Open Assignments and select Add assignment. Choose the eligible use and click create. Additionally you can define a maximum duration if required or needed.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-004.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-004.png)
 
 Lastly make sure your AAD joined session hosts have the right IAM roles assigned, again: (1) Virtual Machine Administrator Login, for local admin access or (2) Virtual Machine User Login, for user access.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-005.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-005.png)
 
 Let try it to access the desktop without approval and you will see the message:
 Oops, we couldn't connect to **sessionhost**
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-006.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-006.png)
 
 Logon to the Azure Portal with the User (Requester) and open PIM, and select my roles and request the role. Enter a description why you want the access.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-007.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-007.png)
 
 Switch to the Approver, check for open request and approve the request.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-008.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-008.png)
 
 One more time go back to the Web Client and test the access, BANG! ITWORKS.
 
-![This image shows the Azure portal and the PIM enabled subscription](/../../../../assets/img/2022-02-04-009.png)
+![This image shows the Azure portal and the PIM enabled subscription](/assets/img/2022-02-04/2022-02-04-009.png)
 
 In a final check you can revoke the assignment. SPOILER, you can establish a session then.
 
