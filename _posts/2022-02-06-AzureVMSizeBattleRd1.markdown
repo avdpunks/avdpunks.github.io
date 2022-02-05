@@ -58,4 +58,4 @@ Beside our tests, we recommend you use simulation tools to test your deployment 
 
 Leave us a comment and your thoughts around this!
 
-Official Documentation and recommendations:[Virtual machine sizing | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/virtual-machine-recs#multi-session-recommendations)
+Official Documentation and recommendations: [Virtual machine sizing | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/virtual-machine-recs#multi-session-recommendations)
