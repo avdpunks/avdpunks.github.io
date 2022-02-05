@@ -32,7 +32,7 @@ For these tests, we deployed two Windows 11 21H2 (build 22000.194) virtual machi
 
 These test runs were performed with connected RDP sessions and each test was run three times. The result is the average of these 3 tests, the benchmark points show the higher this value the better the performance in the areas.
 
-![2022-02-06-001.png](/assets/img/2022-02-06/2022-02-06-001.png =300x100)
+![2022-02-06-001.png](/assets/img/2022-02-06/2022-02-06-001.png)
 
 ![2022-02-06-002.png](/assets/img/2022-02-06/2022-02-06-002.png)
 
