@@ -3,6 +3,7 @@ layout: post
 title:  "Azure Virtual Desktop x Priviliged Identiy Management"
 date:   2022-01-16 15:25:19 +0100
 categories: AVD
+tags: [AVD,Security]
 ---
 # Azure Virtual Desktop (#AVD) x Priviliged Identiy Management (#PIM)
 
