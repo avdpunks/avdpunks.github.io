@@ -32,21 +32,21 @@ For these tests, we deployed two Windows 11 21H2 (build 22000.194) virtual machi
 
 These test runs were performed with connected RDP sessions and each test was run three times. The result is the average of these 3 tests, the benchmark points show the higher this value the better the performance in the areas.
 
-![2022-02-06-001.png](/assets/img/2022-02-06/2022-02-06-001.png){300}
+![2022-02-06-001.png](/assets/img/2022-02-06/2022-02-06-001.png =300x100)
 
-![2022-02-06-002.png](/assets/img/2022-02-06/2022-02-06-002.png){300}
+![2022-02-06-002.png](/assets/img/2022-02-06/2022-02-06-002.png)
 
-![2022-02-06-003.png](/assets/img/2022-02-06/2022-02-06-003.png){300}
+![2022-02-06-003.png](/assets/img/2022-02-06/2022-02-06-003.png)
 
 The VM Size D2ads v5 has better performances in video & photo editing, video conferencing, and web browsing. All other use-cases are very similar between these two VM sizes, but spreadsheets can be better handled by D2ds v5.
 
 Next, were be the same test runs with D-series version 4 and compared to version 5.
 
-![2022-02-06-004.png](/assets/img/2022-02-06/2022-02-06-004.png){300}
+![2022-02-06-004.png](/assets/img/2022-02-06/2022-02-06-004.png)
 
-![2022-02-06-005.png](/assets/img/2022-02-06/2022-02-06-005.png){300}
+![2022-02-06-005.png](/assets/img/2022-02-06/2022-02-06-005.png)
 
-![2022-02-06-006.png](/assets/img/2022-02-06/2022-02-06-006.png){300}
+![2022-02-06-006.png](/assets/img/2022-02-06/2022-02-06-006.png)
 
 ## Conclusion
 
