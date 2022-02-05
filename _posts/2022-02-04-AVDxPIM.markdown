@@ -16,6 +16,12 @@ And in the second post (coming soon): How to add and use PowerApps for an much s
 
 We will not cover additional hardening with MFA, Conditional Access, Networking etc. You can find some of this here 👉How to restrict surfing on #AVD session hosts user Microsoft Defender for Endpoint or Enable Screen Capture Protect on Azure Virtual Desktop #AVD with Microsoft Endpoint Manager #MEM
 
+
+## Table of contents
+1. [First of all, what is PIM?](#First-of-all-what-is-PIM)
+
+
+
 ## First of all, what is PIM? ##
 
 Privileged Identity Management (PIM) is a service in Azure Active Directory (Azure AD) that enables you to manage, control, and monitor access to important resources in your organization. These resources include resources in Azure AD, Azure, and other Microsoft Online Services such as Microsoft 365 or Microsoft Intune.
