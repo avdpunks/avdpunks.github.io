@@ -3,7 +3,7 @@ layout: post
 title:  "Azure Virtual Desktop x WebContent Filtering"
 date:   2022-02-18 10:00:00 +0100
 categories: AVD
-tags: [AVD,Security]
+tags: [AVD,Security,Intune,MEM]
 ---
 # Azure Virtual Desktop (#AVD) x WebContent Filtering x Network protection
 
@@ -31,7 +31,7 @@ But once a user is authenticated and connected to the virtual desktop, they are 
 **Option 1.** In Azure and within Microsoft we have multiple options. The most typical one would be: route all the traffic to a proxy or through a firewall where you can apply rules to allow or deny certain web traffic.
 A great solution can be our **Azure Firewall** in the **premium** tier.
 
-![2022-02-18-000.png](/assets/img/2022-02-18/2022-02-06-000.png)
+![2022-02-18-000.png](/assets/img/2022-02-18/2022-02-18-000.png)
 
 Check: [Azure Firewall Premium | Microsoft Docs](https://docs.microsoft.com/en-us/azure/firewall/premium-features)
 
@@ -60,11 +60,11 @@ Windows 10 Enterprise E5, Microsoft 365 E5, Microsoft 365 E5 Security, Microsoft
 
 Devices in your organization must be configured so that the Defender for Endpoint service can get sensor data from them. There are various methods and deployment tools that you can use to configure the devices in your organization.
 
-![2022-02-18-001.png](/assets/img/2022-02-18/2022-02-06-001.png)
+![2022-02-18-001.png](/assets/img/2022-02-18/2022-02-18-001.png)
 
 For Windows 10 incl. Windows 10 Multi Session in AVD we have different options. For the purpose of testing, I used a centrally located script and run it using a domain-based group policy. You can also place the script in the golden image and run it in the same way.
 
-![2022-02-18-002.png](/assets/img/2022-02-18/2022-02-06-002.png)
+![2022-02-18-002.png](/assets/img/2022-02-18/2022-02-18-002.png)
 
 Download the WindowsDefenderATPOnboardingPackage.zip file from the Windows Defender Security Center
 
@@ -83,7 +83,7 @@ The full documentation for the onboarding is here: [Onboard Windows 10 multi-ses
 
 **Optional:** If you want to go crazy you can do the onboarding via MEM - select Endpoint Security and [Create a device configuration profile to configure Microsoft Defender for Endpoint](https://endpoint.microsoft.com/)
 
-![2022-02-18-003.png](/assets/img/2022-02-18/2022-02-06-003.png)
+![2022-02-18-003.png](/assets/img/2022-02-18/2022-02-18-003.png)
 
 Resource: [Onboard devices to the Microsoft Defender for Endpoint service | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-configure?view=o365-worldwide)
 
@@ -93,13 +93,13 @@ Logon to the Microsoft Defender Security Center portal (https://securitycenter.w
 
 From the left-hand navigation menu, select Settings > General > Advanced Features. Scroll down until you see the entry for Web content filtering and switch the toggle to On and Save preferences.
 
-![2022-02-18-004.png](/assets/img/2022-02-18/2022-02-06-004.png)
+![2022-02-18-004.png](/assets/img/2022-02-18/2022-02-18-004.png)
 
 3. Configure web content filtering policies
 
 Web content filtering policies specify which site categories are blocked on which device groups. To manage the policies, go to Settings > Rules > Web content filtering.
 
-![2022-02-18-005.png](/assets/img/2022-02-18/2022-02-06-005.png)
+![2022-02-18-005.png](/assets/img/2022-02-18/2022-02-18-005.png)
 
 Create a policy
 To add a new policy:
@@ -107,25 +107,25 @@ To add a new policy:
 
 2.    Specify a name.
 
-![2022-02-18-006.png](/assets/img/2022-02-18/2022-02-06-006.png)
+![2022-02-18-006.png](/assets/img/2022-02-18/2022-02-18-006.png)
 
 3.    Select the categories to block. Use the expand icon to fully expand each parent category and select specific web content categories.
 
-![2022-02-18-007.png](/assets/img/2022-02-18/2022-02-06-007.png)
+![2022-02-18-007.png](/assets/img/2022-02-18/2022-02-18-007.png)
 
 4.    Specify the policy scope. Select the device groups to specify where to apply the policy. Only devices in the selected device groups will be prevented from accessing websites in the selected categories.
 
-![2022-02-18-008.png](/assets/img/2022-02-18/2022-02-06-008.png)
+![2022-02-18-008.png](/assets/img/2022-02-18/2022-02-18-008.png)
 
 5.    Review the summary and save the policy.
 
-![2022-02-18-009.png](/assets/img/2022-02-18/2022-02-06-009.png)
+![2022-02-18-009.png](/assets/img/2022-02-18/2022-02-18-009.png)
 
 Let’s connect to an AVD session hosts, start a browser (Microsoft Edge, Chrome, Firefox, Brave and Opera) and try to access a website with a blocked category.
 
 *Note: The policy refresh may take up to 2 hours to apply to your selected devices.*
 
-![2022-02-18-010.png](/assets/img/2022-02-18/2022-02-06-010.png)
+![2022-02-18-010.png](/assets/img/2022-02-18/2022-02-18-010.png)
 
 ## Conclusion ##
 
