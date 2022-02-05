@@ -16,8 +16,6 @@ tags: [AVD,Azure,VM]
 
 ## Introduction
 
-![test](https://github.com/favicon.ico | width=48)
-
 Whether you're running your virtual machine on **Remote Desktop Services (RDS) or Azure Virtual Desktop (AVD)**, different types of workloads require different session host virtual machine (VM) configurations.
 
 One question Ben and I received quick frequently is how to deliver the **best possible experience**, scale your deployment depending on your users' needs and keep costs on a human level.
