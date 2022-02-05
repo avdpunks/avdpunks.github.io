@@ -4,3 +4,4 @@
 
 layout: home
 ---
+![AVDpunks](assets/img/about/avdpunks.png)
