@@ -48,7 +48,9 @@ Here you will find the optimal Azure region for AVD: [Azure Virtual Desktop Expe
 
 If you want to get the current RDWeb region URL from your client, you can run the following PowerShell command:
 
-> Invoke-RestMethod -Uri "https://rdweb.wvd.microsoft.com/api/health" | Select-Object -ExpandProperty RegionUrl
+```
+Invoke-RestMethod -Uri "https://rdweb.wvd.microsoft.com/api/health" | Select-Object -ExpandProperty RegionUrl
+```
 
 The output shows the URL of the RDWeb region with the lowest latency for your client.
 ## What happens when the RTT is too high?
