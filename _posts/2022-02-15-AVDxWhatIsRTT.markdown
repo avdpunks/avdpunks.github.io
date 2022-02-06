@@ -36,7 +36,15 @@ This diagram describes the connection between the Remote Desktop Client and the 
 
 ## How to find the Azure region with the best RTT for your users
 
-https://azure.microsoft.com/en-in/services/virtual-desktop/assessment/
+The most important question before we can answer the other question is: **where are your users?** 
+
+If your users are located in India, it would make sense to deploy your AVD session hosts in India or Southeast Asia. And if they are in Europe, then you should deploy in the Azure region in Europe.
+
+The **AVD gateway** is available in more than **30 regions around the world**, as well as Azure regions. 
+
+Microsoft provides an **Azure Virtual Desktop Experience Estimator** to help you find the optimal Azure region for your AVD session host. This tool estimates the connection RTT from your current location through the Azure Virtual Desktop service to each Azure region where you can deploy virtual machines.  
+
+Here you will find the optimal Azure region for AVD: [Azure Virtual Desktop Experience Estimator](https://azure.microsoft.com/en-in/services/virtual-desktop/assessment/)
 
 ## What happens when the RTT is too high?
 
