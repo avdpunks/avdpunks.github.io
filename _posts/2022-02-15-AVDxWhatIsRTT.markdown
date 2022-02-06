@@ -13,7 +13,7 @@ tags: [AVD,Azure,Networking]
 
 ## Table of contents
 1. [What is RTT?](#What-is-RTT)
-2. [How to find the Azure region with the best RTT for your users](#How-to-find-the-Azure-regio-with-the-best-RTT-for-your-users)
+2. [How to find the Azure region with the best RTT for your users](#How-to-find-the-Azure-region-with-the-best-RTT-for-your-users)
 3. [What happens when the RTT is too high?](#What-happens-when-the-RTT-is-too-high)
 4. [Troubleshooting](#troubleshooting)
 
