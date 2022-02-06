@@ -63,15 +63,11 @@ Here is an extreme example with an RRT of 1600ms (1.6s), i.e. each TCP packet ta
 
 What is the path for the outgoing AVD traffic? Maybe there is a web proxy involved in the connection?
 
-**Microsoft does not recommend using any type of web proxy (scanning, SSL interception, or thread protection) for AVD traffic.** 
+> **Microsoft does not recommend using any type of web proxy (scanning, SSL interception, or thread protection) for AVD traffic.** 
 
 Please check the [proxy server guidelines for Azure Virtual Desktop](https://docs.microsoft.com/en-us/azure/virtual-desktop/proxy-server-support#what-are-proxy-servers).
 
 Microsoft quotes an RTT of up to 150 ms for a stable session if the use case has nothing to do with rendering or videos. For office applications, it seems to be stable with an RTT of 150-200 ms. Find out more [here](https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency).
-
-
-
-
 ## How to optimize the RTT
 
 https://docs.microsoft.com/en-us/azure/virtual-desktop/shortpath
@@ -80,10 +76,33 @@ https://docs.microsoft.com/en-us/azure/virtual-desktop/shortpath
 
 ### Prerequisites
 
+
+
+![2022-02-15-003.png](/assets/img/2022-02-15/2022-02-15-003.png)
+ 
 Activate the Perf Counters:
 - RX Network - TCP 
 - RX Network - UDP
 
 ### Use Log Analytics to analyze the RTT
+
+The following KUSTO queries determine the TCP or UDP RTT average over each connected session in the selected time frame.  
+
+Here the query for TCP RTT:
+```
+Perf
+| where Computer == "server.domain.local"
+| where ObjectName == "RemoteFX Network"
+| where CounterName == "Current TCP RTT"
+| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
+```
+Here the query for UDP RTT:
+```
+Perf
+| where Computer == "server.domain.local"
+| where ObjectName == "RemoteFX Network"
+| where CounterName == "Current TCP RTT"
+| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
+```
 
 ### Use Azure Monitor Insights to analyze the RTT
