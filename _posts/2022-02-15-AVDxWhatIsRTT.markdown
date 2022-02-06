@@ -52,12 +52,24 @@ If you want to get the current RDWeb region URL from your client, you can run th
 Invoke-RestMethod -Uri "https://rdweb.wvd.microsoft.com/api/health" | Select-Object -ExpandProperty RegionUrl
 ```
 
-The output shows the URL of the RDWeb region with the lowest latency for your client.
+The output shows the URL of the RDWeb region with the lowest latency for your client, e.g. https://rdweb-weu-r1.wvd.microsoft.com/. 
 ## What happens when the RTT is too high?
+
+If your RTT or latency is more than 200 ms, it can affect the user experience. The effects are disconnections as well as slowness in the session, as evidenced by mouse interactions not being real-time and each interaction taking a few seconds. 
+
+Here is an extreme example with an RRT of 1600ms (1.6s), i.e. each TCP packet takes 1.6s from client to server and back. This must be avoided and it is necessary to check the network traffic flow. 
 
 ![2022-02-15-002.png](/assets/img/2022-02-15/2022-02-15-002.png)
 
-https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency
+What is the path for the outgoing AVD traffic? Maybe there is a web proxy involved in the connection?
+
+**Microsoft does not recommend using any type of web proxy (scanning, SSL interception, or thread protection) for AVD traffic.** 
+
+Please check the [proxy server guidelines for Azure Virtual Desktop](https://docs.microsoft.com/en-us/azure/virtual-desktop/proxy-server-support#what-are-proxy-servers).
+
+Microsoft quotes an RTT of up to 150 ms for a stable session if the use case has nothing to do with rendering or videos. For office applications, it seems to be stable with an RTT of 150-200 ms. Find out more [here](https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency).
+
+
 
 
 ## How to optimize the RTT
