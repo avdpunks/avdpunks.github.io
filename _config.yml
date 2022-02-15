@@ -27,14 +27,9 @@ twitter_username: avdpunks
 github_username:  avdpunks
 
 # Build settings
-remote_theme: pages-themes/slate@v0.2.0
+theme: minima
 plugins:
-- jekyll-remote-theme
-- jekyll-feed
-
-#theme: slate
-#plugins:
-#  - jekyll-feed
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
