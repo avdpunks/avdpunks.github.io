@@ -2,6 +2,8 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+@import "minima";
+
 .site-title::before {
     content: url("/assets/img/AVDPunk-2D1_32.png");
     display: inline-block;
