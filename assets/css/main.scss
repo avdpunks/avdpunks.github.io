@@ -5,3 +5,12 @@
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
+
+
+  .site-title::before {
+    content: url("/assets/img/AVDPunk-2D1_32.png");
+    display: inline-block;
+    position: relative;
+    width: 35px;
+    top: 5px;
+    }
