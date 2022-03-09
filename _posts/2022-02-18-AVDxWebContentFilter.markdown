@@ -35,7 +35,7 @@ A great solution can be our **Azure Firewall** in the **premium** tier.
 
 ![2022-02-18-000.png](/assets/img/2022-02-18/2022-02-18-000.png)
 
-> **Info:** [Azure Firewall Premium | Microsoft Docs](https://docs.microsoft.com/en-us/azure/firewall/premium-features)
+> **Info:** [Azure Firewall Premium](https://docs.microsoft.com/en-us/azure/firewall/premium-features)
 
 **Option 2**
 
@@ -85,13 +85,13 @@ In the Microsoft Defender Security Center navigation pane, select **Settings** >
 
 6. Extract the contents of the .zip file to a shared, read-only location that can be accessed by the device. You should have a folder called OptionalParamsPolicy and the files WindowsDefenderATPOnboardingScript.cmd and Onboard-NonPersistentMachine.ps1.
 
-The full documentation for the onboarding is here: [Onboard Windows 10 multi-session devices in Windows Virtual Desktop | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-windows-multi-session-device?view=o365-worldwide)
+The full documentation for the onboarding is here: [Onboard Windows 10 multi-session devices in Windows Virtual Desktop](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-windows-multi-session-device?view=o365-worldwide)
 
 **Optional:** If you want to go crazy you can do the onboarding via MEM - select Endpoint Security and [Create a device configuration profile to configure Microsoft Defender for Endpoint](https://endpoint.microsoft.com/)
 
 ![2022-02-18-003.png](/assets/img/2022-02-18/2022-02-18-003.png)
 
-Resource: [Onboard devices to the Microsoft Defender for Endpoint service | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-configure?view=o365-worldwide)
+Resource: [Onboard devices to the Microsoft Defender for Endpoint service](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-configure?view=o365-worldwide)
 
 ### Step 2 -  Turn on the web content filtering feature.
 
@@ -136,4 +136,4 @@ Let’s connect to an AVD session hosts, start a browser (Microsoft Edge, Chrome
 ## Conclusion ##
 
 If you are looking for a quick and easy way to control web content, with a central management for all your endpoints and without deploying additional infrastructure, the Microsoft Defender and the Web Content Filter is a great solution.
-Looking for more? Check the full documentation here: [Web Content Filtering | Doc](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/web-content-filtering?view=o365-worldwide)
+Looking for more? Check the full documentation here: [Web Content Filtering](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/web-content-filtering?view=o365-worldwide)
