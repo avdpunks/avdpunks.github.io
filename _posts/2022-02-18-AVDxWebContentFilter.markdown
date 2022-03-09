@@ -26,22 +26,26 @@ Thanks to reverse connect, your virtual desktops are never exposed to the intern
 
 But once a user is authenticated and connected to the virtual desktop, they are able to surf the web without restrictions!
 
-*We want to control this!*
+***We want to control this!***
 
-**Option 1.** In Azure and within Microsoft we have multiple options. The most typical one would be: route all the traffic to a proxy or through a firewall where you can apply rules to allow or deny certain web traffic.
+**Option 1**
+
+In Azure and within Microsoft we have multiple options. The most typical one would be: route all the traffic to a proxy or through a firewall where you can apply rules to allow or deny certain web traffic.
 A great solution can be our **Azure Firewall** in the **premium** tier.
 
 ![2022-02-18-000.png](/assets/img/2022-02-18/2022-02-18-000.png)
 
-Check: [Azure Firewall Premium | Microsoft Docs](https://docs.microsoft.com/en-us/azure/firewall/premium-features)
+> **Info:** [Azure Firewall Premium | Microsoft Docs](https://docs.microsoft.com/en-us/azure/firewall/premium-features)
 
-**Option 2.** But there is another, with our Microsoft Defender for Endpoint we offer a new feature called Web Content Filtering.
+**Option 2**
+
+But there is another, with our Microsoft Defender for Endpoint we offer a new feature called Web Content Filtering.
 
 Web Content Filtering enables you to track and regulate access to websites based on their content categories. Of course not all of this websites are malicious but might be problematic in terms of compliance regulations, bandwidth usage, productivity or other concerns.
 
 Blocking a category prevents users from accessing URLs. For any category that's not blocked, the URLs are automatically audited. Your users can access the URLs without disruption, and you'll gather access statistics to help create a more custom policy decision.
 
-Note: Web content filtering is currently in public preview.
+> **Note:** Web content filtering is currently in public preview.
 
 This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see Microsoft Defender for Endpoint preview features.
 
@@ -56,28 +60,30 @@ Windows 10 Enterprise E5, Microsoft 365 E5, Microsoft 365 E5 Security, Microsoft
 - Windows Defender SmartScreen and Network protection enabled.
 
 ## Configure the Windows Defender for Endpoints ##
-1. Device onboarding
+### Step 1 - Device onboarding
 
 Devices in your organization must be configured so that the Defender for Endpoint service can get sensor data from them. There are various methods and deployment tools that you can use to configure the devices in your organization.
 
 ![2022-02-18-001.png](/assets/img/2022-02-18/2022-02-18-001.png)
 
-For Windows 10 incl. Windows 10 Multi Session in AVD we have different options. For the purpose of testing, I used a centrally located script and run it using a domain-based group policy. You can also place the script in the golden image and run it in the same way.
+For Windows 10 incl. Windows 10 Multi Session in AVD we have different options. 
+
+For the purpose of testing, I used a centrally located script and run it using a domain-based group policy. You can also place the script in the golden image and run it in the same way.
 
 ![2022-02-18-002.png](/assets/img/2022-02-18/2022-02-18-002.png)
 
-Download the WindowsDefenderATPOnboardingPackage.zip file from the Windows Defender Security Center
+1. Download the WindowsDefenderATPOnboardingPackage.zip file from the Windows Defender Security Center
 
-Open the VDI configuration package .zip file (WindowsDefenderATPOnboardingPackage.zip)
+2. Open the VDI configuration package .zip file (WindowsDefenderATPOnboardingPackage.zip)
 In the Microsoft Defender Security Center navigation pane, select **Settings** > **Onboarding**.
 
-Select Windows 10 as the operating system.
+3. Select Windows 10 as the operating system.
 
-In the Deployment method field, select VDI onboarding scripts for non-persistent endpoints.
+4. In the Deployment method field, select VDI onboarding scripts for non-persistent endpoints.
 
-Click Download package and save the .zip file.
+5. Click Download package and save the .zip file.
 
-Extract the contents of the .zip file to a shared, read-only location that can be accessed by the device. You should have a folder called OptionalParamsPolicy and the files WindowsDefenderATPOnboardingScript.cmd and Onboard-NonPersistentMachine.ps1.
+6. Extract the contents of the .zip file to a shared, read-only location that can be accessed by the device. You should have a folder called OptionalParamsPolicy and the files WindowsDefenderATPOnboardingScript.cmd and Onboard-NonPersistentMachine.ps1.
 
 The full documentation for the onboarding is here: [Onboard Windows 10 multi-session devices in Windows Virtual Desktop | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-windows-multi-session-device?view=o365-worldwide)
 
@@ -87,17 +93,17 @@ The full documentation for the onboarding is here: [Onboard Windows 10 multi-ses
 
 Resource: [Onboard devices to the Microsoft Defender for Endpoint service | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/onboard-configure?view=o365-worldwide)
 
-2. Turn on the web content filtering feature.
+### Step 2 -  Turn on the web content filtering feature.
 
-Logon to the Microsoft Defender Security Center portal (https://securitycenter.windows.com)
+1. Logon to the Microsoft Defender Security Center portal (https://securitycenter.windows.com)
 
-From the left-hand navigation menu, select Settings > General > Advanced Features. Scroll down until you see the entry for Web content filtering and switch the toggle to On and Save preferences.
+2. From the left-hand navigation menu, select Settings > General > Advanced Features. Scroll down until you see the entry for Web content filtering and switch the toggle to On and Save preferences.
 
 ![2022-02-18-004.png](/assets/img/2022-02-18/2022-02-18-004.png)
 
-3. Configure web content filtering policies
+### Step 3 - Configure web content filtering policies
 
-Web content filtering policies specify which site categories are blocked on which device groups. To manage the policies, go to Settings > Rules > Web content filtering.
+Web content filtering policies specify which site categories are blocked on which device groups. To manage the policies, go to **Settings > Rules > Web content filtering**.
 
 ![2022-02-18-005.png](/assets/img/2022-02-18/2022-02-18-005.png)
 
@@ -123,7 +129,7 @@ To add a new policy:
 
 Let’s connect to an AVD session hosts, start a browser (Microsoft Edge, Chrome, Firefox, Brave and Opera) and try to access a website with a blocked category.
 
-*Note: The policy refresh may take up to 2 hours to apply to your selected devices.*
+> **Note:** The policy refresh may take up to 2 hours to apply to your selected devices.
 
 ![2022-02-18-010.png](/assets/img/2022-02-18/2022-02-18-010.png)
 
