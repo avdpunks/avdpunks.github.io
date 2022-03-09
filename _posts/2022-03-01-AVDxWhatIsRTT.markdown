@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop - What is RTT?"
-date:   2022-03-01 11:11:11 +0100
+date:   2022-03-15 11:11:11 +0100
 categories: AVD
 tags: [AVD,Azure,Networking]
 ---
@@ -68,21 +68,49 @@ What is the path for the outgoing AVD traffic? Maybe there is a web proxy involv
 Please check the [proxy server guidelines for Azure Virtual Desktop](https://docs.microsoft.com/en-us/azure/virtual-desktop/proxy-server-support#what-are-proxy-servers).
 
 Microsoft quotes an RTT of up to 150 ms for a stable session if the use case has nothing to do with rendering or videos. For office applications, it seems to be stable with an RTT of 150-200 ms. Find out more [here](https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency).
-## How to optimize the RTT
-
-https://docs.microsoft.com/en-us/azure/virtual-desktop/shortpath
 
 ## Troubleshooting
 
+As of February 8, 2022, there is a new option to collect and query network data for Azure Virtual Desktop connections. This can show the RTT without enabling the RemoteFX Network performance counter. I will describe both options here.
+
+**Options 1** - Collect RTT via PerfMon counters
+
+**Options 2** - Collect RTT via AVD NetworkData
+
+Here you can find the original article from techcommunity:  [Collect and query Network Data for Azure Virtual Desktop connections](https://techcommunity.microsoft.com/t5/azure-virtual-desktop/collect-and-query-network-data-for-azure-virtual-desktop/m-p/3140397)
 ### Prerequisites
 
+You need to create an Azure Log Analytics workspace that can capture Windows event logs, Windows performance counters, AVD logs, and more. Log Analytics is billed according to the log data stored. 
 
+> Log Analytics is required for both options. 
+
+**Options 1** - Collect RTT via PerfMon counters
+
+1. Connect your virtual machines to your Log Analytics workspace under **Workspace Data Sources > Virtual machines** then select a VM and connect.
+
+2. Enable the Performance Counters for RTT Network Data under **Agents configuration** and open the **Windows performance counters tab**. Then you need to add the following counters if they are not already added:
+
+```
+RemoteFX Network(*)\Current TCP Bandwidth
+RemoteFX Network(*)\Current TCP RTT
+RemoteFX Network(*)\Current UDP Bandwidth
+RemoteFX Network(*)\Current UDP RTT
+```
+> The bandwidth counters are not required, but can be useful to see the connection bandwidth between the client and the session host.
 
 ![2022-03-01-003.png](/assets/img/2022-03-01/2022-03-01-003.png)
  
-Activate the Perf Counters:
-- RX Network - TCP 
-- RX Network - UDP
+**Options 2** - Collect RTT via AVD NetworkData
+
+1. Open the diagnostics settings for your Azure Virtual Desktop Host Pool under **Monitoring > Diagnostics settings**
+2. Add diagnostics settings and enter a setting name then select **allLogs or a specific categories**
+> Note: NetworkData is required for RTT/Bandwidth
+3. Activate **Send to Log Analytics workspace** then select your subscription and your log workspace
+4. **Save** the diagnostics setting
+
+![2022-03-15-004.png](/assets/img/2022-03-01/2022-03-15-004.png)
+
+> Note: It takes some time until the first log data is available. 
 
 ### Use Log Analytics to analyze the RTT
 
