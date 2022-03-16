@@ -114,6 +114,8 @@ RemoteFX Network(*)\Current UDP RTT
 
 ### Use Log Analytics to analyze the RTT
 
+**Options 1** - Collect RTT via PerfMon counters
+
 The following KUSTO queries determine the TCP or UDP RTT average over each connected session in the selected time frame.  
 
 Here the query for TCP RTT:
@@ -132,5 +134,7 @@ Perf
 | where CounterName == "Current TCP RTT"
 | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
 ```
+
+**Options 2** - Collect RTT via AVD NetworkData
 
 ### Use Azure Monitor Insights to analyze the RTT
