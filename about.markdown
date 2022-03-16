@@ -38,3 +38,5 @@ So, there you have it... enjoy!
 What we are working On
 
 **Stay tuned**
+
+PS: We use analytics and cookies to understand site traffic.
