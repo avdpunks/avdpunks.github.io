@@ -20,8 +20,7 @@
 
 title: Welcome to AVDpunks
 description: >
-    We are the AVDpunks. 
-      We use analytics and cookies to understand site traffic.
+    We are the AVDpunks.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://avdpunks.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: avdpunks
@@ -29,6 +28,7 @@ github_username:  avdpunks
 google_analytics: G-EJL06KQ6G6
 
 # Build settings
+show_excerpts: true 
 theme: minima
 plugins:
   - jekyll-feed
