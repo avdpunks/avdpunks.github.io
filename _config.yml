@@ -28,7 +28,6 @@ github_username:  avdpunks
 google_analytics: G-EJL06KQ6G6
 
 # Build settings
-show_excerpts: true 
 theme: minima
 plugins:
   - jekyll-feed
