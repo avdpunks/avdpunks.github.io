@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![AVDpunks](assets/img/about/avdpunks.png)
+![AVDpunks](assets/img/about/AVDPunkTeamsCall_Small.png)
 
 ## Hi user, ## 
 
