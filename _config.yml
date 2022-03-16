@@ -21,6 +21,8 @@
 title: Welcome to AVDpunks
 description: >- # this means to ignore newlines until "baseurl:"
   We are the AVDpunks.
+
+  This website uses cookies for Google Analytics.  
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://avdpunks.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: avdpunks
