@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop - What is RTT?"
-date:   2022-03-30 11:11:11 +0100
+date:   2022-04-10 11:11:11 +0100
 categories: AVD
 tags: [AVD,Azure,Networking]
 ---
