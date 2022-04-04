@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![AVDpunks](assets/img/about/avdpunks.png)
+![AVDpunks](assets/img/about/AVDPunkTeamsCall_Small.png)
 
 ## Hi user, ## 
 
@@ -14,14 +14,14 @@ Since we constantly improving our skills we started this personal blog to develo
 ### Who am I (Ben) ###
 
 I am Ben, my "tech" career started in 1995 when I poured my hot chocolate over my father's brand-new Windows NT 3.5 workstation. Imagin I had a VDI at this time, it would have saved me so much trouble.
-Living in a VAN (part time), I know all the ups and downs of a VDI and working from remote 😅
+I am living in a VAN (part time), so my definition of working from remote might be a little bit extrem and I know all the ups and downs of a VDI and working from remote 😅
 
-As an Advanced Cloud Expert (ACE) I am working in a professional technical team that leads conversations, works closely together with Microsoft Sales Specialists, and provides deep-technical implementation knowledge for our small, medium and corporate (SMC) and major commercial customers in EMEA.
 
-With a special expertise in Windows Virtual Desktop, client virtualization and other resource-intensive workloads like GPU powered virtualization, I inspire, empower, and support our customers as well as partners to unlock the power of Azure.
+As an Advanced Cloud Expert for Azure Virtual Desktop, Windows 365, HPC and remote engineering solutions, I am working in a professional technical team that leads conversations, works closely together with Microsoft Sales Specialists, and provides deep-technical implementation knowledge for our small, medium and corporate (SMC) and major commercial customers in EMEA.
+
+With a special expertise in Azure Virtual Desktop, client virtualization and other resource-intensive workloads like GPU powered virtualization, I inspire, empower, and support our customers as well as partners to unlock the power of Azure.
 
 Follow me on [LinkedIn](https://www.linkedin.com/in/ben-martin-baur/) and [GitHub](https://github.com/BenMartinBaur)
-
 
 ### Who am I (Daniel) ###
 
@@ -37,4 +37,8 @@ So, there you have it... enjoy!
 
 What we are working On
 
+[**Buy us a beer**](https://www.buymeacoffee.com/avdpunks)
+
 **Stay tuned**
+
+PS: We use analytics and cookies to understand site traffic.
