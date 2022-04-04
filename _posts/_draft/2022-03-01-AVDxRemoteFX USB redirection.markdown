@@ -30,7 +30,7 @@ AVD and the RDP allow us to use specific types of devices effectively in a remot
 - Audio Redirection, which allows recording and playback of audio in remote sessions
 - Port Redirection, which allows the use of serial and parallel ports in remote sessions
 
-These high-level redirections can be controlled and resitricted via the [RDP Properties](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files) directly from the portal. [Patrick Koehler](https://avdlogix.com/wvd-rdp-properties-explained) covered this in a very comprehensive post. *Thanks Patrick*
+These high-level redirections can be controlled and resitricted via the [RDP Properties](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files) directly from the portal.
 
 However, there are many devices like the spacemouse, printers webcams, scanners and more which are not covered by this redirections.
 RemoteFX USB redirection enables you to redirect these devices and brings you the best of both worlds and an improved user experience.
@@ -60,7 +60,6 @@ With new features like Adaptive Graphics, RemoteFX Multi-Touch, RemoteFX Media R
 With Windows Server 2012, and subsequent releases including RemoteFX in Windows 10, RemoteFX was designed with more default features that made it simpler and easier to use.
 
 ## Requirement
-
 Some general requirements were
 The host machine’s Hyper-V server needs a “non-server core setup” that excludes any media codecs before connecting RemoteFX with a vGPU (virtual graphical processing unit).
 
@@ -112,7 +111,7 @@ OR you use Microsoft Endpoint Configuration Manager (#MEM) to configure this set
 
 ![MEMConfig](/assets/img/2022-03-01/2022-03-01-002.png)
 
-Lastly, connect you non Plug & Play device to your PC and start your AVD session! 💡
+Lastly, connect your spacemouse to you device, make sure it's not in use by any local application and enjoy it in you remote session💡.
 
 ## Conclusion ##
-acts as a catch-all mechanism that redirects these USB devices! Unlike high-level redirections such as drive redirection, RemoteFX USB redirection happens at the port protocol (USB request block or URB) level, and is similar to how one can redirect serial or parallel ports via RDP. This provides some unique advantages, as you’ll see below. However, RemoteFX USB redirection is meant to supplement high-level redirections, not to supplant them. By combining RemoteFX USB redirection with RDP high-level device redirections, you can have the best of both worlds. 
+RemoteFX acts as a catch-all mechanism that redirects these USB devices! Unlike high-level redirections such as drive redirection, RemoteFX USB redirection happens at the port protocol (USB request block or URB) level, and is similar to how one can redirect serial or parallel ports via RDP. This provides some unique advantages, as you’ll see below. However, RemoteFX USB redirection is meant to supplement high-level redirections, not to supplant them. By combining RemoteFX USB redirection with RDP high-level device redirections, you can have the best of both worlds. 

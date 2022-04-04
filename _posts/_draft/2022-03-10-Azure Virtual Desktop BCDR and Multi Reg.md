@@ -9,18 +9,18 @@ tags: [AVD,BCDR]
 
 ## Table of contents
 1. [Introduction](#Introduction)
-2. [Device redirection overview](#Device-redirection-overview)
-3. [Device redirections compared](#Device-redirections-compared)
-4. [What is RemoteFX](#What-is-remotefx)
-5. [RemoteFX requirements and configuration](#RemoteFX-requirements-and-configuration)
-6. [Conclusion](#Conclusion)
+2. [Part I : The compute resources](#part-i--the-compute-resources)
+3. [Part II : The data- and storage layer](#part-ii--the-data--and-storage-layer)
+4. [Part III : Images](#part-iii--images)
+5. [Part IV : FSLogix](#part-iv--fslogix)
+6. [Part V : Active-Active or Active-Passive](#part-v--active-active-or-active-passive)
+7. [Part VI : Azure Site Recovery](#part-vi-azure-site-recovery)
+8. [Conclusion](#conclusion)
 
-## Introduction
-Since more and more Azure Virtual Desktop (AVD) deployments are popping up all over the world, it is essential you consider a vital business continuity and disaster recovery plan. Especially when designing for scale and growth.
+## Introduction ##
+Azure Virtual Desktop is an global Azure Cloud native service, hosted and managed by Microsoft. But it is essential you consider a vital business continuity and disaster recovery plan. Especially when you design it for scale and growth.
 
-Azure Virtual Desktop is an global Azure Cloud native service, hosted and managed by Microsoft.
-
-This means that you don’t have to worry about the underlying infrastructure, and the traditional core components such as the web access server, database, the licensing or brokering server and the load balancer for user connections.
+In AVD you don’t have to worry about the underlying infrastructure, and the traditional core components such as the web access server, database, the licensing or brokering server and the load balancer for user connections.
 
 Furthermore, since it is a global service, the service itself is high available by design.
 
@@ -28,17 +28,17 @@ This leads us to the question what should we protect, how can we protect data an
 
 In this post I focus on options for the overall architecture, virtual machines, storage, images and FSLogix of a AVD deployment.
 
-## Part I : The compute resources - Sets and Zones
+## Part I : The compute resources ##
 When deploying high available compute workloads Microsoft offers multiple options: Availability Zone and Availability Sets.
 
 An Azure region contains one or more zones. An availability zone has a distinct power source, network, and cooling, similar to a on-premises datacenter.
 
 An availability set is a logical grouping of VMs that allows Azure to distribute resources within one zone in different fault and update domains.
 
-Fault domains
+**Fault domains**
 A fault domain is a logical group of underlying hardware that share a common power source and network switch, similar to a rack within an on-premises datacenter.
 
-Update domains
+**Update domains**
 An update domain is a logical group of underlying hardware that can undergo maintenance or be rebooted at the same time.
 
 This approach ensures that at least one instance of your application always remains running as the Azure platform undergoes periodic maintenance. The order of update domains being rebooted may not proceed sequentially during maintenance, but only one update domain is rebooted at a time.
@@ -47,7 +47,7 @@ There is no cost for the availability set itself, you only pay for each VM insta
 
 For an AVD ARM deployment, session hosts are configured within a availability set and spread across up to three fault domains by default. This protects session hosts of a potential physical hardware failures, network outages, or power interruptions within an Azure datacenter.
 
-## Part II : The data- and storage layer
+## Part II : The data- and storage layer ##
 AVD itself will not store any business critical data. So when we look at the data, storage layer and session hosts, (hopefully) it primarily comes to user profile data and potentially msix app attach containers. personal or project data are stored in OneDrive, a file share or Project Lifecycle Management Software.
 
 Note: If you store business critical data on the session hosts a backup or snapshot might be something you should look at.
@@ -75,15 +75,15 @@ and Geo-zone redundant storage or GZRS
 
 Locally redundant: means that every file is stored three times within an Azure storage cluster. This protects against loss of data due to hardware faults, such as a bad disk drive.
 
-Zone redundant: means that every file is stored three times across three distinct Azure storage clusters. Just like with locally redundant storage, zone redundancy gives you three copies of each file, however these copies are physically isolated in three distinct storage clusters in different Azure availability zones.
+**Zone redundant**: means that every file is stored three times across three distinct Azure storage clusters. Just like with locally redundant storage, zone redundancy gives you three copies of each file, however these copies are physically isolated in three distinct storage clusters in different Azure availability zones.
 
-Geo-redundant: is like locally redundant storage, in that a file is stored three times within an Azure storage cluster in the primary region. All writes are then asynchronously replicated to a Microsoft-defined secondary region. Geo-redundant storage provides 6 copies of your data spread between two Azure regions. In the event of a major disaster such as the permanent loss of an Azure region due to a natural disaster or other similar event, Microsoft will perform a failover so that the secondary in effect becomes the primary, serving all operations. Since the replication between the primary and secondary regions are asynchronous, in the event of a major disaster, data not yet replicated to the secondary region will be lost. You can also perform a manual failover of a geo-redundant storage account.
+**Geo-redundant**: is like locally redundant storage, in that a file is stored three times within an Azure storage cluster in the primary region. All writes are then asynchronously replicated to a Microsoft-defined secondary region. Geo-redundant storage provides 6 copies of your data spread between two Azure regions. In the event of a major disaster such as the permanent loss of an Azure region due to a natural disaster or other similar event, Microsoft will perform a failover so that the secondary in effect becomes the primary, serving all operations. Since the replication between the primary and secondary regions are asynchronous, in the event of a major disaster, data not yet replicated to the secondary region will be lost. You can also perform a manual failover of a geo-redundant storage account.
 
-Geo-zone redundant: is like zone redundant storage, in that a file is stored three times across three distinct storage clusters in the primary region. All writes are then asynchronously replicated to a Microsoft-defined secondary region. The failover process for geo-zone-redundant storage works the same as it does for geo-redundant storage.
+**Geo-zone redundant**: is like zone redundant storage, in that a file is stored three times across three distinct storage clusters in the primary region. All writes are then asynchronously replicated to a Microsoft-defined secondary region. The failover process for geo-zone-redundant storage works the same as it does for geo-redundant storage.
 
 Standard Azure file shares support all four redundancy types, while premium Azure file shares only support locally redundant and zone redundant storage.
 
-Note: In case you are looking for a way to migrate you file shares to Azure. Microsoft provides multiple guides to help you move your files into Azure file shares. Read more here: https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview
+**Note**: In case you are looking for a way to migrate you file shares to Azure. Microsoft provides multiple guides to help you move your files into Azure file shares. Read more here: https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview
 
 Important: Storage redundancy does not replace backups! Consider up backup the Azure Files storage to protect your e.g. user profiles.
 
@@ -95,7 +95,7 @@ To make a multi region AVD deployment even more easier there is the Shared Image
 A great benefit of the Azure Image Gallery is that you can deploy your image to different Regions within Azure at the same time.
 
 ## Part IV : FSLogix
-While it is generally highly recommended to use the build in redundancy option of the service, there is another option when it comes to the user profile and office container to make them high available - FSLogix Cloud Cache.
+While it is generally highly recommended to use the build in redundancy option of the service, there is another option when it comes to the user profile- and office container to make them high available - **FSLogix Cloud Cache**.
 
 Cloud Cache is an optional add-on and allows the use of multiple remote locations, which are all continually updated during the user session.
 
@@ -103,7 +103,7 @@ Using Cloud Cache can insulate users from short-term loss of connectivity to rem
 
 It's important to understand that, even with Cloud Cache, all initial reads are accomplished from the redirected location. Likewise, all writes occur to all remote storage locations, although writes go to the Local Cache file first.
 
-Note: Cloud Cache doesn't improve the users' sign-on and sign out experience. It gets even worse when using poor performing storage. It's common for environments using Cloud Cache to have slightly slower sign-on and sign out times, relative to using traditional VHDLocations, using the same storage.
+**Note**: Cloud Cache doesn't improve the users' sign-on and sign out experience. It gets even worse when using poor performing storage. It's common for environments using Cloud Cache to have slightly slower sign-on and sign out times, relative to using traditional VHDLocations, using the same storage.
 
 ## Part V : Active-Active or Active-Passive
 All these options are leading us finally to different scenarios and architectures we can deploy to build a scalable, high available and most important vital BCDR plan for our AVD environment.
@@ -126,8 +126,19 @@ Thats why, it is very important to note that this model does not provide seamles
 
 .. NEW PICTURE .. 
 
-Conclusion
+## Part VI Azure Site Recovery
+
+Azure Site Recovery or a secondary host pool (hot stand-by) can be used to maintain a backup environment.
+
+Azure Site Recovery is supported for both personal (dedicated) and pooled (shared) host pool types, and lets you maintain a single host pool entity.
+
+You can create a new host pool in the failover region while keeping all of the resources turned off. For this method, set up new application groups in the failover region and assign users to them. You can then use a recovery plan in Azure Site Recovery to turn on host pools and create an orchestrated process.
+
+.. New PICTURE .. 
+
+## Conclusion
 I hope this post and helps you to design, decide and to define how to build an resilient and healthy AVD environment. Hopefully you will never be in a critical scenario, but when, you have a plan ready for it! 
+Stay tuned for additional content around FSLogix Cloud Cache. 
 
 ## Resources
 https://docs.microsoft.com/en-us/azure/virtual-machines/availability
@@ -136,58 +147,4 @@ https://docs.microsoft.com/en-gb/azure/storage/common/storage-redundancy
 https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries
 https://docs.microsoft.com/en-us/fslogix/cloud-cache-resiliency-availability-cncpt
 https://docs.microsoft.com/en-us/fslogix/configure-cloud-cache-tutorial
-
-
-
-
-
-There are three standard options for storing FSLogix profiles:
-• Azure Files
-• Azure NetApp Files (ZRS/LSR)
-• FSLogix Cloud Cache for replication
-
-Per User / Per Group Settings
-- For Cloud Cache
-
-
-
-Single Region Resiliency 
-- Cloud Cache
-- ANF
-- Azure Files
-
-Multi Region Business Cont
-- Cloud Cache
-- ANF
-- Azure Files 
-- Personal
-    - 
-
-
-Cloud Cache
-Cloud Cache uses a local profile to service reads from a redirected Profile or Office container
-after completing its first read. Cloud Cache can use multiple remote locations that are updated
-continuously during the user session. Cloud Cache can essentially insulate users from the risk of 
-short-term loss of connectivity to remote profile containers. It is also important to note that Cloud
-Cache can provide active-active redundancy for Profile and Office containers.
-
-Host pool active-active vs. active-passive
-For an Azure Virtual Desktop host pool, you can adopt either an active-active or active-passive BCDR approach.
-
-An active-active approach:
-
-Storage outages are mitigated without requiring the user to reauthenticate.
-Continuous testing of the disaster recovery location is enabled.
-A single host pool can contain VMs from multiple regions. In this scenario, usage of cloud cache is required to actively replicate the user's FSLogix profile and office containers between the regions.
-For virtual machines (VMs) in each region, the cloud cache registry entry specifying locations needs to be inverted to give precedence to the local one.
-Load balancing of incoming user connection can't take proximity into account; all hosts will be equal and users may be directed to a remote (not optimal) Azure Virtual Desktop host pool VM.
-This configuration is limited to a pooled (shared) host pool type. For a personal (dedicated) type, once a desktop is assigned to a user on a certain session host VM, it sticks and doesn't change, even if not available.
-This configuration can be complex and isn't considered to be either a performance or cost optimization.
-With active-passive:
-
-Azure Site Recovery or a secondary host pool (hot stand-by) can be used to maintain a backup environment.
-Azure Site Recovery is supported for both personal (dedicated) and pooled (shared) host pool types, and lets you maintain a single host pool entity.
-You can create a new host pool in the failover region while keeping all of the resources turned off. For this method, set up new application groups in the failover region and assign users to them. You can then use a recovery plan in Azure Site Recovery to turn on host pools and create an orchestrated process.
-
-
 
