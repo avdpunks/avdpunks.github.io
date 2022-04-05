@@ -7,15 +7,16 @@ tags: [AVD,BCDR]
 ---
 # Azure Virtual Desktop (AVD) BCDR and Multi Region Deployments
 
+![This image shows the AVDPunk Header](/assets/img/2022-03-10/2022-03-10-001.png)
+
 ## Table of contents
 1. [Introduction](#Introduction)
 2. [Part I : The compute resources](#part-i--the-compute-resources)
 3. [Part II : The data- and storage layer](#part-ii--the-data--and-storage-layer)
 4. [Part III : Images](#part-iii--images)
 5. [Part IV : FSLogix](#part-iv--fslogix)
-6. [Part V : Active-Active or Active-Passive](#part-v--active-active-or-active-passive)
-7. [Part VI : Azure Site Recovery](#part-vi-azure-site-recovery)
-8. [Conclusion](#conclusion)
+6. [Part V : Part V : Active-Passive & Site Recovery](#part-v--active-passive--site-recovery)
+7. [Conclusion](#conclusion)
 
 ## Introduction ##
 Azure Virtual Desktop is an global Azure Cloud native service, hosted and managed by Microsoft. But it is essential you consider a vital business continuity and disaster recovery plan. Especially when you design it for scale and growth.
@@ -48,11 +49,9 @@ There is no cost for the availability set itself, you only pay for each VM insta
 For an AVD ARM deployment, session hosts are configured within a availability set and spread across up to three fault domains by default. This protects session hosts of a potential physical hardware failures, network outages, or power interruptions within an Azure datacenter.
 
 ## Part II : The data- and storage layer ##
-AVD itself will not store any business critical data. So when we look at the data, storage layer and session hosts, (hopefully) it primarily comes to user profile data and potentially msix app attach containers. personal or project data are stored in OneDrive, a file share or Project Lifecycle Management Software.
+AVD itself will not store any business critical data. So when we look at the data, storage layer and session hosts, (hopefully) it primarily comes to user profile data and potentially msix app attach containers. personal or project data are stored in OneDrive, a file share or any kind of project lifecycle management system.
 
 Note: If you store business critical data on the session hosts a backup or snapshot might be something you should look at.
-
-I personally recommend to use Azure Files, preferably premium and in case you missed it, Microsoft just dropped the pricing model by 33%. Read more here: 33% price drop announced recently.
 
 Why? Premium files are backed by solid-state drives (SSDs) and provide consistent high performance and low latency, within single-digit milliseconds for most IO operations, for IO-intensive workloads.
 
@@ -68,10 +67,10 @@ Azure Files requires a storage account and a provides multiple options and featu
 
 For redundancy and high availability it similar to the compute options.
 
-Local redundant storage or LRS
-Zone redundant storage or ZRS
-Geo-redundant storage or GRS
-and Geo-zone redundant storage or GZRS
+- Local redundant storage or LRS
+- Zone redundant storage or ZRS
+- Geo-redundant storage or GRS
+- and Geo-zone redundant storage or GZRS
 
 Locally redundant: means that every file is stored three times within an Azure storage cluster. This protects against loss of data due to hardware faults, such as a bad disk drive.
 
@@ -87,14 +86,14 @@ Standard Azure file shares support all four redundancy types, while premium Azur
 
 Important: Storage redundancy does not replace backups! Consider up backup the Azure Files storage to protect your e.g. user profiles.
 
-## Part III : Images
+## Part III : Images ##
 What could go wrong, you simply spin up a set of new session hosts in case of a disaster. But wait where is the image?
 
 To make a multi region AVD deployment even more easier there is the Shared Image Gallery (SIG).
 
 A great benefit of the Azure Image Gallery is that you can deploy your image to different Regions within Azure at the same time.
 
-## Part IV : FSLogix
+## Part IV : FSLogix ##
 While it is generally highly recommended to use the build in redundancy option of the service, there is another option when it comes to the user profile- and office container to make them high available - **FSLogix Cloud Cache**.
 
 Cloud Cache is an optional add-on and allows the use of multiple remote locations, which are all continually updated during the user session.
@@ -105,36 +104,26 @@ It's important to understand that, even with Cloud Cache, all initial reads are 
 
 **Note**: Cloud Cache doesn't improve the users' sign-on and sign out experience. It gets even worse when using poor performing storage. It's common for environments using Cloud Cache to have slightly slower sign-on and sign out times, relative to using traditional VHDLocations, using the same storage.
 
-## Part V : Active-Active or Active-Passive
+## Part V : Active-Passive & Site Recovery ##
 All these options are leading us finally to different scenarios and architectures we can deploy to build a scalable, high available and most important vital BCDR plan for our AVD environment.
 
 One option is an Active Active deployment with FSLogix Cloud Cache. Cloud Cache provides seamless failover the only thing you have to make sure is the CCDLocation configuration.
 
-The price you pay for the Cloud Cache is a slightly delay of logon and logoff time and a higher local disk IO due to the local cache.
+The price you pay for the Cloud Cache is a slightly delay of logon and logoff time and a higher local disk IO due to the local cache. 
 
-.. NEW PICTURE .. 
+Another option is Active-Passive with a Geo-redundant storage or multiple storage accounts and some kind of DFS or replication mechanism or sync jobs.
 
-Another option is Active-Passive with a Geo-redundant storage or multiple storage accounts you synchronize or some kind of DFS or replication mechanism. 
-
-FSLogix allows you to configure multiple VHD(x) locations. To configure FSLogix VHD(x) locations you are using the
-
-HKLM\SOFTWARE\FSLogix\Profile\VHDLocation - Type: MULTI_SZ or REG_SZ.
-
-But this option was not designed for high availability in the first place. The list of locations in VHDLocations was created to allow a customer to control where the VHD is placed and to be able to control which VHDs are created on which location using share permissions. FSlogix has built-in logic to determine that the first location is not available and will not proceed to create another disk on the next server in the list so only one VHD(x) location can be accessed at any one time.
+Keep in mind this option was not designed for high availability in the first place. The list of locations in VHDLocations was created to allow a customer to control where the VHD is placed and to be able to control which VHDs are created on which location using share permissions. FSlogix has built-in logic to determine that the first location is not available and will not proceed to create another disk on the next server in the list so only one VHD(x) location can be accessed at any one time.
 
 Thats why, it is very important to note that this model does not provide seamless failover. In case of a failover, a reboot or more likely a reset of the users’ session will be required and only one region / VHD(x) location should be available at the time.
 
-.. NEW PICTURE .. 
-
-## Part VI Azure Site Recovery
-
-Azure Site Recovery or a secondary host pool (hot stand-by) can be used to maintain a backup environment.
+Lastly, Azure Site Recovery or a secondary host pool (hot stand-by) can be used to maintain a backup environment.
 
 Azure Site Recovery is supported for both personal (dedicated) and pooled (shared) host pool types, and lets you maintain a single host pool entity.
 
 You can create a new host pool in the failover region while keeping all of the resources turned off. For this method, set up new application groups in the failover region and assign users to them. You can then use a recovery plan in Azure Site Recovery to turn on host pools and create an orchestrated process.
 
-.. New PICTURE .. 
+Stay tuned for some updated architecture diagramms 😏
 
 ## Conclusion
 I hope this post and helps you to design, decide and to define how to build an resilient and healthy AVD environment. Hopefully you will never be in a critical scenario, but when, you have a plan ready for it! 
@@ -147,4 +136,3 @@ https://docs.microsoft.com/en-gb/azure/storage/common/storage-redundancy
 https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries
 https://docs.microsoft.com/en-us/fslogix/cloud-cache-resiliency-availability-cncpt
 https://docs.microsoft.com/en-us/fslogix/configure-cloud-cache-tutorial
-
