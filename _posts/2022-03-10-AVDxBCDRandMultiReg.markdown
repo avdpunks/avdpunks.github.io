@@ -82,7 +82,7 @@ Locally redundant: means that every file is stored three times within an Azure s
 
 Standard Azure file shares support all four redundancy types, while premium Azure file shares only support locally redundant and zone redundant storage.
 
-**Note**: In case you are looking for a way to migrate you file shares to Azure. Microsoft provides multiple guides to help you move your files into Azure file shares. Read more here: [https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview)
+> **Note**: In case you are looking for a way to migrate you file shares to Azure. Microsoft provides multiple guides to help you move your files into Azure file shares. Read more here: [https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-migration-overview)
 
 Important: Storage redundancy does not replace backups! Consider up backup the Azure Files storage to protect your e.g. user profiles.
 
@@ -104,7 +104,7 @@ Using Cloud Cache can insulate users from short-term loss of connectivity to rem
 
 It's important to understand that, even with Cloud Cache, all initial reads are accomplished from the redirected location. Likewise, all writes occur to all remote storage locations, although writes go to the Local Cache file first.
 
-**Note**: Cloud Cache doesn't improve the users' sign-on and sign out experience. It gets even worse when using poor performing storage. It's common for environments using Cloud Cache to have slightly slower sign-on and sign out times, relative to using traditional VHDLocations, using the same storage.
+> **Note**: Cloud Cache doesn't improve the users' sign-on and sign out experience. It gets even worse when using poor performing storage. It's common for environments using Cloud Cache to have slightly slower sign-on and sign out times, relative to using traditional VHDLocations, using the same storage.
 
 ## Part V : Active-Passive & Site Recovery ##
 All these options are leading us finally to different scenarios and architectures we can deploy to build a scalable, high available and most important vital BCDR plan for our AVD environment.
