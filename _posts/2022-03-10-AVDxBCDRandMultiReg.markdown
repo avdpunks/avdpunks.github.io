@@ -98,6 +98,8 @@ While it is generally highly recommended to use the build in redundancy option o
 
 Cloud Cache is an optional add-on and allows the use of multiple remote locations, which are all continually updated during the user session.
 
+![FSLogix Cloud Cache Design](/assets/img/2022-03-10/2022-03-10-002.png)
+
 Using Cloud Cache can insulate users from short-term loss of connectivity to remote profile containers. Cloud Cache can also provide real time, 'Active-Active' redundancy for Profile Container and Office Container.
 
 It's important to understand that, even with Cloud Cache, all initial reads are accomplished from the redirected location. Likewise, all writes occur to all remote storage locations, although writes go to the Local Cache file first.
