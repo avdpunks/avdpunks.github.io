@@ -132,9 +132,9 @@ I hope this post and helps you to design, decide and to define how to build an r
 Stay tuned for additional content around FSLogix Cloud Cache. 
 
 ## Resources
-- https://docs.microsoft.com/en-us/azure/virtual-machines/availability
-- https://docs.microsoft.com/en-us/azure/storage/files/storage-files-planning
-- https://docs.microsoft.com/en-gb/azure/storage/common/storage-redundancy
-- https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries
-- https://docs.microsoft.com/en-us/fslogix/cloud-cache-resiliency-availability-cncpt
-- https://docs.microsoft.com/en-us/fslogix/configure-cloud-cache-tutorial
+- [https://docs.microsoft.com/en-us/azure/virtual-machines/availability](https://docs.microsoft.com/en-us/azure/virtual-machines/availability)
+- [https://docs.microsoft.com/en-us/azure/storage/files/storage-files-planning](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-planning)
+- [https://docs.microsoft.com/en-gb/azure/storage/common/storage-redundancy](https://docs.microsoft.com/en-gb/azure/storage/common/storage-redundancy)
+- [https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries](https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries)
+- [https://docs.microsoft.com/en-us/fslogix/cloud-cache-resiliency-availability-cncpt](https://docs.microsoft.com/en-us/fslogix/cloud-cache-resiliency-availability-cncpt)
+- [https://docs.microsoft.com/en-us/fslogix/configure-cloud-cache-tutorial](https://docs.microsoft.com/en-us/fslogix/configure-cloud-cache-tutorial)
