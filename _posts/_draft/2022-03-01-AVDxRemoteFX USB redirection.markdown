@@ -5,18 +5,22 @@ date:   2022-03-01 10:00:00 +0100
 categories: AVD
 tags: [AVD,HPC]
 ---
-# Azure Virtual Desktop (#AVD) x RemoteFX USB redirection
+# Azure Virtual Desktop (#AVD) x RemoteF(what)X - USB redirection
+
+
+![This image shows the AVDPunk Header](/assets/img/2022-03-15/2022-03-15-001.png)
+
 
 ## Table of contents
 1. [Introduction](#Introduction)
 2. [Device redirection overview](#Device-redirection-overview)
 3. [Device redirections compared](#Device-redirections-compared)
 4. [What is RemoteFX](#What-is-remotefx)
-5. [RemoteFX requirements and configuration](#RemoteFX-requirements-and-configuration)
+5. [RemoteFX Configuration](#RemoteFX-configuration)
 6. [Conclusion](#Conclusion)
 
 ## Introduction
-What is a Cloud Engineering Workspace without the loved engineering pheripherie device, the 3DS Spacemouse? In this post we cover all essentials around the RemoteFX USB redirection in an Azure Virtual Desktop (AVD) or Remote Desktop environement and how to configure it.
+What is a Cloud Engineering Workspace without the loved engineering pheripherie device, the Spacemouse? In this post we cover all essentials around the RemoteFX USB redirection in an Azure Virtual Desktop (AVD) or Remote Desktop environement and how to configure it.
 
 *Note: Ofcorse this applies to other USB devices too.* 😊
 
@@ -59,28 +63,8 @@ With new features like Adaptive Graphics, RemoteFX Multi-Touch, RemoteFX Media R
 
 With Windows Server 2012, and subsequent releases including RemoteFX in Windows 10, RemoteFX was designed with more default features that made it simpler and easier to use.
 
-## Requirement
-Some general requirements were
-The host machine’s Hyper-V server needs a “non-server core setup” that excludes any media codecs before connecting RemoteFX with a vGPU (virtual graphical processing unit).
-
-No additional configuration is necessary to enable RemoteFX Media Streaming (or any other RDP service).
-
-When users meld RemoteFX USB redirection and RDP high-level device redirection, the best of both worlds can be achieved.
-
-Other RemoteFX requirements are:
-
-DirectX 11.0-compatible GPU alongside a WDDM 1.2-compatible driver (for those using Windows Server 2008 R2 Service Pack 1: server(s) need no less than one DirectX 9.0c and 10.0 compatible graphics card).
-A CPU that supporting Second-Level Address Translation (SLAT).
-Installed VM instances that run on (and are created with) Hyper-V.
-Host computers with non-domain Controllers.
-Enabled RemoteFX vGPU support for the below listed operating systems:
-○ Windows 7 SP1
-○ Windows 8.1
-○ Windows 10 1703 or newer
-○ Windows Server 2016 (in single-session deployment only)
-Even though GPUs with OpenGL/OpenCL is supported and provide full-functionality, it is strongly advised to only use graphics cards designed to work within a professional workstation.
-
-## Enable RemoteFX on your AVD session hosts
+## RemoteFX Configuration ##
+## Enable RemoteFX on your AVD session hosts ##
 1. Open run with **Windows + R** and enter **gpedit.msc**. Open the "Local Group Policy Editor".
 
 2. From the navigation tree on the left, select: **Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Device and Resource Redirection**. Open **Do not allow supported Plug and Play device redirection** and select **Allow plug&play device redirection**
@@ -91,7 +75,7 @@ Even though GPUs with OpenGL/OpenCL is supported and provide full-functionality,
 
 4. **Restart** your session host to apply the changes
 
-## Enable RemoteFX USB redirection in Windows 10/Windows 11
+## Enable RemoteFX USB redirection in Windows 10/Windows 11 ##
 The RemoteFX USB redirection feature is disabled by default so lets enable it. 
 
 1. On your client run **gpedit.msc**.
@@ -115,3 +99,7 @@ Lastly, connect your spacemouse to you device, make sure it's not in use by any 
 
 ## Conclusion ##
 RemoteFX acts as a catch-all mechanism that redirects these USB devices! Unlike high-level redirections such as drive redirection, RemoteFX USB redirection happens at the port protocol (USB request block or URB) level, and is similar to how one can redirect serial or parallel ports via RDP. This provides some unique advantages, as you’ll see below. However, RemoteFX USB redirection is meant to supplement high-level redirections, not to supplant them. By combining RemoteFX USB redirection with RDP high-level device redirections, you can have the best of both worlds. 
+
+## Resources ##
+https://en.wikipedia.org/wiki/RemoteFX
+https://docs.microsoft.com/en-us/virtualization/community/team-blog/2010/20100317-explaining-microsoft-remotefx
