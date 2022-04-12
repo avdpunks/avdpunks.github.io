@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop - What is RTT?"
-date:   2022-04-15 11:11:11 +0100
+date:   2022-04-13 11:11:11 +0100
 categories: AVD
 tags: [AVD,Azure,Networking]
 ---
 # Azure Virtual Desktop - What is RTT?
 
-![2022-03-30-000.png](/assets/img/2022-03-30/2022-03-30-000.png)
+![2022-04-13-000.png](/assets/img/2022-04-13/2022-04-13-000.png)
 
 **Let's go!**
 
@@ -32,7 +32,7 @@ This diagram describes the connection between the Remote Desktop Client and the 
 
 > It is intended to show an example of a client connection from Central India and an AVD Session Host located in Azure Western Europe. The RTT is imaginary and strongly varied.
  
-![2022-03-30-001.png](/assets/img/2022-03-30/2022-03-30-001.png)
+![2022-04-13-001.png](/assets/img/2022-04-13/2022-04-13-001.png)
 
 ## How to find the Azure region with the best RTT for your users
 
@@ -59,7 +59,7 @@ If your RTT or latency is more than 200 ms, it can affect the user experience. T
 
 Here is an extreme example with an RRT of 1600ms (1.6s), i.e. each TCP packet takes 1.6s from client to server and back. This must be avoided and it is necessary to check the network traffic flow. 
 
-![2022-03-30-002.png](/assets/img/2022-03-30/2022-03-30-002.png)
+![2022-04-13-002.png](/assets/img/2022-04-13/2022-04-13-002.png)
 
 What is the path for the outgoing AVD traffic? Maybe there is a web proxy involved in the connection?
 
@@ -98,25 +98,25 @@ RemoteFX Network(*)\Current UDP RTT
 ```
 > The bandwidth counters are not required, but can be useful to see the connection bandwidth between the client and the session host.
 
-![2022-03-30-003.png](/assets/img/2022-03-30/2022-03-30-003.png)
+![2022-04-13-003.png](/assets/img/2022-04-13/2022-04-13-003.png)
  
 **Options 2** - Collect RTT via AVD NetworkData
 
 1. Open the diagnostics settings for your Azure Virtual Desktop Host Pool under **Monitoring > Diagnostics settings**
 2. Add diagnostics settings and enter a setting name then select **allLogs or a specific categories**
-> Note: NetworkData is required for RTT/Bandwidth
+> **Note**: NetworkData is required for RTT/Bandwidth
 3. Activate **Send to Log Analytics workspace** then select your subscription and your log workspace
 4. **Save** the diagnostics setting
 
-![2022-03-30-004.png](/assets/img/2022-03-30/2022-03-30-004.png)
+![2022-04-13-004.png](/assets/img/2022-04-13/2022-04-13-004.png)
 
-> Note: It takes some time until the first log data is available. 
+> **Note**: It takes some time until the first log data is available. 
 
 ### Use Log Analytics to analyze the RTT
 
 **Options 1** - Collect RTT via PerfMon counters
 
-The following KUSTO queries determine the TCP or UDP RTT average over each connected session in the selected time frame.  
+The following KUSTO queries determine the TCP or UDP RTT average (30d) for specific AVD session host connection in the selected time frame.  
 
 Here the query for TCP RTT:
 ```
@@ -134,7 +134,16 @@ Perf
 | where CounterName == "Current TCP RTT"
 | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
 ```
+> **Note**: You can use the **WVDConnections** query to get the user session ID, but this SessionHostSessionId is not automatically also the ID for the RDP session instance name (rdp-sxs[StackVersion] [ID]), for example, "rdp-sxs220202160 0". 
 
 **Options 2** - Collect RTT via AVD NetworkData
 
-### Use Azure Monitor Insights to analyze the RTT
+The following KUSTO query determines the average, maximum, and P90 for RTT and bandwidth for all connected user sessions in the selected time frame.  
+
+```
+WVDConnectionNetworkData 
+| join kind=inner  (WVDConnections | where State =="Connected" and UserName !="" ) on CorrelationId
+| summarize ["Avg. RTT"]=avg(EstRoundTripTimeInMs),["Max. RTT"]=max(EstRoundTripTimeInMs),["P90 RTT"]=percentile(EstRoundTripTimeInMs,90),["Avg. Bandwidth"]=avg(EstAvailableBandwidthKBps),["Max. Bandwidth"]=max(EstAvailableBandwidthKBps),["P90 Bandwidth"]=percentile(EstAvailableBandwidthKBps,90) by UserName
+| order by ["Avg. RTT"] desc
+```
+![2022-04-13-005.png](/assets/img/2022-04-13/2022-04-13-005.png)
