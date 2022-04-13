@@ -7,7 +7,7 @@ tags: [AVD,Azure,Networking]
 ---
 # Azure Virtual Desktop - What is RTT?
 
-![2022-04-13-000.png](/assets/img/2022-04-13/2022-04-13-000.png)
+![2022-04-13-006.png](/assets/img/2022-04-13/2022-04-13-006.png)
 
 **Let's go!**
 
