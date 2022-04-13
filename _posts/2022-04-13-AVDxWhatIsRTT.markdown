@@ -76,7 +76,7 @@ The following options are currently available:
 
 - Analyze your network traffic flow and find network components or hops that need to be upgraded or optimized. 
 - Follow the proxy server guidelines for AVD (see above).
-- Inform your user to update the AVD client to the latest version when a notice appears. There is no option to force an upgrade.
+- Inform your user to update the AVD client to the latest version when a notice appears. There is no option to force an upgrade. Here you can download the latest client: [https://aka.ms/avdclient](https://aka.ms/avdclient)
 
 Stay tuned, I think something will come up in the next few days. 
 
