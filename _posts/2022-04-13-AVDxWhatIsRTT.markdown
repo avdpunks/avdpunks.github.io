@@ -78,7 +78,17 @@ The following options are currently available:
 - Follow the proxy server guidelines for AVD (see above).
 - Inform your user to update the AVD client to the latest version when a notice appears. There is no option to force an upgrade. Here you can download the latest client: [https://aka.ms/avdclient](https://aka.ms/avdclient)
 
-Stay tuned, I think something will come up in the next few days. 
+### Azure Virtual Desktop RDP Shortpath for public networks (preview)
+
+Microsoft has announced the public preview of Azure Virtual Desktop **RDP shortpath for public networks**. This feature is gatewayless and will improve session reliability with better latency and bandwidth. 
+
+It is based on the **Universal Rate Control Protocol (URCP)** and uses the **STUN/ICE** method to establish a direct connection between the client and the session host.
+
+Here is a very simplified diagram:
+
+![2022-04-13-007.png](/assets/img/2022-04-13/2022-04-13-007.png)
+
+You will find the full documentation here: [https://aka.ms/AVDShortPathPublic](https://aka.ms/AVDShortPathPublic)
 
 ## Troubleshooting
 
