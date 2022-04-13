@@ -15,7 +15,8 @@ tags: [AVD,Azure,Networking]
 1. [What is RTT?](#What-is-RTT)
 2. [How to find the Azure region with the best RTT for your users](#How-to-find-the-Azure-region-with-the-best-RTT-for-your-users)
 3. [What happens when the RTT is too high?](#What-happens-when-the-RTT-is-too-high)
-4. [Troubleshooting](#troubleshooting)
+4. [How to optimize the RTT](#How-to-optimize-the-RTT)
+5. [Troubleshooting](#troubleshooting)
 
 
 ## What is RTT?
@@ -69,6 +70,16 @@ Please check the [proxy server guidelines for Azure Virtual Desktop](https://doc
 
 Microsoft quotes an RTT of up to 150 ms for a stable session if the use case has nothing to do with rendering or videos. For office applications, it seems to be stable with an RTT of 150-200 ms. Find out more [here](https://docs.microsoft.com/en-us/azure/virtual-desktop/connection-latency).
 
+## How to optimize the RTT
+
+The following options are currently available:
+
+- Analyze your network traffic flow and find network components or hops that need to be upgraded or optimized. 
+- Follow the proxy server guidelines for AVD (see above).
+- Inform your user to update the AVD client to the latest version when a notice appears. There is no option to force an upgrade.
+
+Stay tuned, I think something will come up in the next few days. 
+
 ## Troubleshooting
 
 As of February 8, 2022, there is a new option to collect and query network data for Azure Virtual Desktop connections. This can show the RTT without enabling the RemoteFX Network performance counter. I will describe both options here.
@@ -104,7 +115,7 @@ RemoteFX Network(*)\Current UDP RTT
 
 1. Open the diagnostics settings for your Azure Virtual Desktop Host Pool under **Monitoring > Diagnostics settings**
 2. Add diagnostics settings and enter a setting name then select **allLogs or a specific categories**
-> **Note**: NetworkData is required for RTT/Bandwidth
+> **Note**: **NetworkData** is required for RTT/Bandwidth
 3. Activate **Send to Log Analytics workspace** then select your subscription and your log workspace
 4. **Save** the diagnostics setting
 
