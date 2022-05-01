@@ -111,6 +111,9 @@ Here is a snip of the configuration (replace $URL with your webhook URL)
 
 Building this microhack was fun and highlights how easy you can automate tasks in the cloud. And we all know how important this is.
 
-For all the pre-sales engineers you can now spend another couple of minutes at the coffee bar 😉
+For all the pre-sales engineers you can now spend another couple of minutes at the coffee bar 😉!
 
 Stay tuned for more!
+
+## Resources
+- [Microsoft Docs | Automation webhooks](https://docs.microsoft.com/en-us/azure/automation/automation-webhooks)
