@@ -144,7 +144,7 @@ Here the query for TCP RTT:
 Perf
 | where Computer == "server.domain.local"
 | where ObjectName == "RemoteFX Network"
-| where CounterName == "Current TCP RTT"
+| where CounterName == "Current UDP RTT"
 | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
 ```
 Here the query for UDP RTT:
@@ -152,7 +152,7 @@ Here the query for UDP RTT:
 Perf
 | where Computer == "server.domain.local"
 | where ObjectName == "RemoteFX Network"
-| where CounterName == "Current TCP RTT"
+| where CounterName == "Current UDP RTT"
 | summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 30d), Computer
 ```
 > **Note**: You can use the **WVDConnections** query to get the user session ID, but this SessionHostSessionId is not automatically also the ID for the RDP session instance name (rdp-sxs[StackVersion] [ID]), for example, "rdp-sxs220202160 0". 
