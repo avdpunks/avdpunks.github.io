@@ -24,7 +24,7 @@ It's just another day in the office...and a small coffee break, lunch date or *(
 
 It can be so easy: **"Hi Siri start my engineering demo"**
 
-In this blog post, I will show you an easy way how you can start or shutdown virtual machines or perform any tasks in the Azure with your Siri (Sorry Cortana!).
+In this blog post, I will show you an easy way how you can start or shutdown virtual machines or perform any tasks in the Azure with your Siri (Sorry Cortana 😋).
 
 ## Automation and workflow
 
