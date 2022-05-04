@@ -5,9 +5,10 @@ date:   2022-03-10 10:00:00 +0100
 categories: AVD
 tags: [AVD,BCDR]
 ---
-# Azure Virtual Desktop (AVD) BCDR and Multi Region Deployments
 
 ![This image shows the AVDPunk Header](/assets/img/2022-03-10/2022-03-10-001.png)
+
+# Azure Virtual Desktop (AVD) BCDR and Multi Region Deployments
 
 ## Table of contents
 1. [Introduction](#Introduction)
