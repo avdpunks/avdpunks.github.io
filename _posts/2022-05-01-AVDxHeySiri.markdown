@@ -117,4 +117,4 @@ For all the pre-sales engineers you can now spend another couple of minutes at t
 Stay tuned for more!
 
 ## Resources
-- [Microsoft Docs | Automation webhooks](https://docs.microsoft.com/en-us/azure/automation/automation-webhooks)
+- Azure Automation Documentation and recommendations: [Docs](https://docs.microsoft.com/en-us/azure/automation/automation-webhooks)
