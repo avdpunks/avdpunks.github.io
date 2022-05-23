@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Advanced Device Redirection"
-date:   2022-05-14 10:00:00 +0100
+date:   2022-05-23 10:00:00 +0100
 categories: AVD
-tags: [AVD,Linux,HPC]
+tags: [AVD,Linux,HPC,W365]
 ---
 # Azure Virtual Desktop (#AVD) <3 Linux Session Hosts
 
@@ -24,6 +24,7 @@ But it is absolutely possible to provide a Linux Desktop via AVD.
 ## Option I
 
 One way could be through WSL2. The installation on a Windows 10/11 session host is documented here: [Install WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install)
+If you are using Cloud PC, Nested Virtualization is currently in [preview](https://docs.microsoft.com/en-us/windows-365/enterprise/nested-virtualization).
 
 ![AVD Client with WSL 2](/assets/img/2022-05-14/2022-05-14-001.png)
 
@@ -92,4 +93,8 @@ Lastly configure your remote application in the Azure Portal.
 
 ## Conclusion
 
-The optimal solution would be to have native Linux support in AVD but as long as this is not given you can enjoy your Linux desktop delivered through this workaround.
+An optimal solution would be to have native Linux support in AVD 😏 but as long as this is not given you can enjoy your Linux desktop delivered through this workaround. 
+
+## Resources
+[WSL | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/setup/environment)
+[W365 | Nested Virtualization](https://docs.microsoft.com/en-us/windows-365/enterprise/nested-virtualization)

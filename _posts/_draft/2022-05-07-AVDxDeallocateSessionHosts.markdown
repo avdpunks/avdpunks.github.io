@@ -50,6 +50,7 @@ if ($WebhookData){
    
     Write-Output "Successfully logged into Azure subscription using a Managed Identity..."
 
+    #Specify the value of your tags you want to manage
     $tags = @{
         managed = 'true'
         avd = 'true'
