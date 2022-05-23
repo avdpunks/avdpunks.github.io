@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Azure Virtual Desktop x Advanced Device Redirection"
+title:  "Azure Virtual Desktop x Linux"
 date:   2022-05-23 10:00:00 +0100
 categories: AVD
 tags: [AVD,Linux,HPC,W365]
