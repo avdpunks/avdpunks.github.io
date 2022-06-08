@@ -11,7 +11,7 @@ tags: [AVD,Automation]
 
 ## Table of contents
 1. [Introduction](#Introduction)
-2. [Automation and worklof](#automation-and-workflow)
+2. [Automation and workflow](#automation-and-workflow)
 3. [Shutdown on disconnect](#shutdown-on-disconnect)
 4. [Option I](#option-i)
 5. [Option II](#option-ii)
