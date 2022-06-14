@@ -12,6 +12,9 @@ tags: [AVD,Landingzone,IaC,Bicep]
 ## Table of contents
 1. [Introduction](#Introduction)
 2. [Windows location service](#Windows-location-service-and-privacy)
+3. [How to enable Location service on Windows 11 for AVD](#How-to-enable-Location-service-on-Windows-11-for-AVD)
+4. [How to enable Location redirection for AVD](#How-to-enable-Location-redirection-for-AVD)
+5. [Look and feel](#Look-and-feel)
 6. [Conclusion](#Conclusion)
 
 ## Introduction
