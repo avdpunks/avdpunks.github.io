@@ -64,13 +64,19 @@ The Settings Catalog is the only way to define configuration policies for Window
 
 Please follow the description to create a new settings catalog for Windows 10+ VDI or multisession: [How to configure profiles](https://avdpunks.com/avd/2022/02/05/IntuneConfigOptForAVD.html#How-to-configure-profiles)
 
+You can create a new configuration policy or add the setting to an existing policy. 
+
 Search for **Allow Location** in the settings picker and select **Allow Location** in the results list. 
 
 ![This image shows the Intune Settings picker for Allow Location](/assets/img/2022-06-14/2022-06-14-005.png)
 
-
+Next, select **Force Location On. All location privacy settings are toggled...** for the Allow Location setting on the Configuration Settings tab. 
 
 ![This image shows the Intune Settings Catalog to allow location](/assets/img/2022-06-14/2022-06-14-006.png)
+
+If you have created a new policy, you must assign that policy to a user or device group. 
+
+That is all to enable location services via Intune configuration policy.
 
 ### Via GPO
 
