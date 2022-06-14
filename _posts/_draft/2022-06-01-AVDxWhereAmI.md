@@ -18,18 +18,27 @@ tags: [AVD,Landingzone,IaC,Bicep]
 6. [Conclusion](#Conclusion)
 
 ## Introduction
-Traveling across europe with my Van while working on a VDI deployed in Western Europe can be frustraiting 
+Traveling across europe with my Van while working on a VDI deployed in Western Europe can be a challenge, especially when route planning. 😅
 
-While some services (like your search engine) are using the IP-based Geolocation to display results. 
+And so you might have the same challenge. A lot of my AVD deployments are in North?West Europe or in any other Azure region, but employees are located in across Europe. 
 
-Redirecting geolocation information from the client device to remote desktops or published applications requires enabling the Geolocation Redirection feature on the agent machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
+This brings the big question, can we improve the over all user experience by redirecting the edge device location. 
 
-Fuction
-Precise location means better weather reporting, more relevant local news, and overall greater functionality for apps and Windows. 
+Yes...and No. Windows is determining the location and region settings based on multiple factors and some services services (like your search engine of choice) are using the IP-based Geo-location to display results. The only way at the moment to improve this, is via a proxy in the country itself. 
 
-We have several WVD deployments in West Europe, but we and the customers are located in Norway. We need Edge to return results relevant to Norwegian users, not results relevant to users in Amsterdam.. I know it can be done manually for each users if they log on to Edge, but a solution with a GPO would be preferrable as there are lots of users. 
+Nevertheless, we notices new settings in the [Windows Client](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections) and RDP Properties and managed to redirect the location to the session host. This allows us to get weather reporting, more relevant local news, and overall greater functionality for apps and Windows like the map. 
+
+![This image shows the RDP Properties location service](/assets/img/2022-06-14/2022-06-14-0000.png)
 
 ⚠️ There is no official documentation around this configuration ⚠️
+
+## Lab setup and requirements
+
+1. Windows 11 21H2 Edge Device
+2. Windows MSRDC Client Version
+3. Windows 11 21H2 Session Host  
+
+Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the agent machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
 
 ## Windows location service
 
