@@ -110,7 +110,11 @@ redirectlocation:i:1
 
 ## Conclusion
 
+Even if it just a limited scope, it is an improvement for the overall user experience and we are sure further improvments will follow. 
+
 ## Resources
-https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections
-https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files
-https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#other-redirection-devices-etc
+ [Configure Device Redirections](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections)
+
+ [RDP Files](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files)
+
+ [Compare RDP Clients](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#other-redirection-devices-etc)
