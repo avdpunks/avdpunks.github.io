@@ -36,7 +36,7 @@ Nevertheless, we notices new settings in the [Windows Client](https://docs.micro
 
 1. Windows 11 21H2 Edge Device
 2. Windows MSRDC Client Version
-3. Windows 11 21H2 Session Host  
+3. Windows 11 21H2 Session Host, Intune joined since we are using the settings picker to configure the session host.
 
 Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the agent machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
 
