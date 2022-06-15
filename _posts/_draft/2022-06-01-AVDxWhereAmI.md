@@ -28,8 +28,6 @@ Yes...and No. Windows is determining the location and region settings based on m
 
 Nevertheless, we notices new settings in the [Windows Client](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections) and RDP Properties and managed to redirect the location to the session host. This allows us to get weather reporting, more relevant local news, and overall greater functionality for apps and Windows like the map. 
 
-![This image shows the RDP Properties location service](/assets/img/2022-06-14/2022-06-14-0000.png)
-
 ⚠️ There is no official documentation around this configuration ⚠️
 
 ## Lab setup and requirements
@@ -110,7 +108,9 @@ redirectlocation:i:1
 
 ## Conclusion
 
-Even if it just a limited scope, it is an improvement for the overall user experience and we are sure further improvments will follow. 
+Even if it just a limited scope, it is an improvement for the overall user experience and since a couple of days the Azure Portal is showing new features in the RDP Properties section. So stay tuned for more updates.
+
+![This image shows the RDP Properties location service](/assets/img/2022-06-14/2022-06-14-0000.png)
 
 ## Resources
  [Configure Device Redirections](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections)
