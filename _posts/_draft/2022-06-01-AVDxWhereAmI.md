@@ -142,9 +142,11 @@ Let's see how it looks and feels.
 
 ## Conclusion
 
-Even if it just a limited scope, it is an improvement for the overall user experience and since a couple of days the Azure Portal is showing new features in the RDP Properties section. So stay tuned for more updates.
+Even if it just a limited scope, it is an improvement for the overall user experience and since a couple of days the Azure Portal is showing new features in the RDP Properties section. 
 
-![This image shows the RDP Properties location service](/assets/img/2022-06-14/2022-06-14-0000.png)
+So stay tuned for more updates.
+
+[Follow us on twitter!](https://twitter.com/avdpunks)
 
 ## Resources
  [Configure Device Redirections](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections)
