@@ -20,7 +20,7 @@ tags: [AVD,Landingzone,IaC,Bicep]
 ## Introduction
 Traveling across europe with my Van while working on a VDI deployed in Western Europe can be a challenge, especially when route planning. 😅
 
-And so you might have the same challenge. A lot of my AVD deployments are in North?West Europe or in any other Azure region, but employees are located in across Europe. 
+And so you might have the same or at least the challenge that a lot of your deployments are in the North/West Europe Region or anywhere, but not in the same country your end users are located in. 
 
 This brings the big question, can we improve the over all user experience by redirecting the edge device location. 
 
@@ -90,7 +90,17 @@ That is all to enable location services via Intune configuration policy.
 
 ### Via GPO
 
+Open your Group Policy editor and navigate to 
+
+```
+Computer configuration--> Administrative templates--> Windows components--> Location and sensors--> Windows Location Provider
+```
+
+![This image shows the GPO Location provider](/assets/img/2022-06-14/2022-06-14-0014.png)
+
 ### Via Registry Key
+
+Navigate to 
 
 ```
 Windows Registry Editor Version 5.00
@@ -99,12 +109,20 @@ Windows Registry Editor Version 5.00
 ```
 ## How to enable Location redirection for AVD
 
-RDP Property
+To redirect the client location, navigate to Azure Virtual Desktop, select your Hostpool, RDP Properties and set **redirectlocation:i:1** in the advanced 
+
+Advanced RDP Property
 ```
 redirectlocation:i:1
 ```
+
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-0013.png)
+
 ## Look and feel
 
+![This image shows the Bowser of a AVD session hosts](/assets/img/2022-06-14/2022-06-14-020.png)
+
+![This image shows the Bowser of a AVD session hosts](/assets/img/2022-06-14/2022-06-14-0030.png)
 
 ## Conclusion
 
