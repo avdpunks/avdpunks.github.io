@@ -36,7 +36,9 @@ Nevertheless, we notices new settings in the [Windows Client](https://docs.micro
 2. Windows MSRDC Client Version
 3. Windows 11 21H2 Session Host, Intune joined since we are using the settings picker to configure the session host.
 
-Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the agent machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
+Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the session host machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
+
+Location services must be enabled on both client devices and the session host. 
 
 ## Windows location service
 
@@ -90,17 +92,22 @@ That is all to enable location services via Intune configuration policy.
 
 ### Via GPO
 
-Open your Group Policy editor and navigate to 
+Next, would be to define the Group Policy Setting for enable the Loaction services. Open your Group Policy editor and navigate to the following path:
 
 ```
-Computer configuration--> Administrative templates--> Windows components--> Location and sensors--> Windows Location Provider
-```
+# Computer configuration
+Computer configuration > Administrative templates > Windows components > Location and sensors > Turn off location
 
-![This image shows the GPO Location provider](/assets/img/2022-06-14/2022-06-14-0014.png)
+# User configuration
+User configuration > Administrative templates > Windows components > Location and sensors > Turn off location
+```
+> You must disable this setting to enable location services. 
+
+![This image shows the group policy setting to enable location](/assets/img/2022-06-14/2022-06-14-007.png)
 
 ### Via Registry Key
 
-Navigate to 
+Another option is to add the following registry to the session host and to your local machine to enable location services:
 
 ```
 Windows Registry Editor Version 5.00
@@ -109,14 +116,23 @@ Windows Registry Editor Version 5.00
 ```
 ## How to enable Location redirection for AVD
 
-To redirect the client location, navigate to Azure Virtual Desktop, select your Hostpool, RDP Properties and set **redirectlocation:i:1** in the advanced 
+To redirect the client location, navigate to Azure Virtual Desktop, select your Hostpool, RDP Properties and add **redirectlocation:i:1** to your existing RDP properties in the advanced tab:
 
-Advanced RDP Property
 ```
 redirectlocation:i:1
 ```
 
-![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-0013.png)
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-008.png)
+
+Or you can enable the location redirection from the **Device redirection** tab and select **Enable location sharing from the local device and redirect to apps in the remote session** and click on **Save**.
+
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-009.png)
+
+> ⚠️ This is a host pool configuration and cannot be set individually per session host. 
+
+This is how to enable location redirection on AVD session host. 
+
+Let's see how it looks and feels. 
 
 ## Look and feel
 
