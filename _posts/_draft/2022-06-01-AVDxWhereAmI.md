@@ -18,27 +18,28 @@ tags: [AVD,Landingzone,IaC,Bicep]
 6. [Conclusion](#Conclusion)
 
 ## Introduction
-Traveling across europe with my Van while working on a VDI deployed in Western Europe can be a challenge, especially when route planning. 😅
+Traveling across europe with my Van while working on a VDI deployed in Western Europe can be a challenge, especially when route planning. 😅 (This VDI thinks all the time I am in Amsterdam...)
 
-And so you might have the same or at least the challenge that a lot of your deployments are in the North/West Europe Region or anywhere, but not in the same country your end users are located in. 
+And so, you might have the same or at least a similar challenge that a lot of your deployments are in the North/West Europe Region, but your end users are located in a different country. 
 
 This brings the big question, can we improve the over all user experience by redirecting the edge device location. 
 
-Yes...and No. Windows is determining the location and region settings based on multiple factors and some services services (like your search engine of choice) are using the IP-based Geo-location to display results. The only way at the moment to improve this, is via a proxy in the country itself. 
+Yes...and No. First we need to understand, Windows is determining the location and region settings based on multiple factors and some services services (like your search engine of choice) are using the IP-based Geo-location to display results. The only way to improve this, is via a proxy or breakout in the country itself. 
 
-Nevertheless, we notices new settings in the [Windows Client](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections) and RDP Properties and managed to redirect the location to the session host. This allows us to get weather reporting, more relevant local news, and overall greater functionality for apps and Windows like the map. 
+Nevertheless, in our latest test we notices new settings in the [Windows Client](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections) and RDP Properties and managed to redirect the location to the session host. This allows us to get weather reporting, more relevant local news, and overall greater functionality for apps and Windows like the map. 
 
-⚠️ There is no official documentation around this configuration ⚠️
+>⚠️ There is no official documentation around this configuration ⚠️
 
 ## Lab setup and requirements
 
+We performed all test with 
 1. Windows 11 21H2 Edge Device
 2. Windows MSRDC Client Version
-3. Windows 11 21H2 Session Host, Intune joined since we are using the settings picker to configure the session host.
+3. Windows 11 21H2 Session Host, Intune enrolled, since we are using the settings picker to configure the session host.
 
 Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the session host machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
 
-Location services must be enabled on both client devices and the session host. 
+Location services must be **enabled** on both client devices and the session host. 
 
 ## Windows location service
 
@@ -48,13 +49,13 @@ All is about the famous **Windows location service**, which has been available s
 
 ![This image shows the Windows 11 weather widget location service](/assets/img/2022-06-14/2022-06-14-002.png)
 
->Microsoft location service will use a combination of global positioning service (GPS), nearby wireless access points, cell towers, and your IP address (or default location) to determine your device’s location.
+>💡 Microsoft location service will use a combination of global positioning service (GPS), nearby wireless access points, cell towers, and your IP address (or default location) to determine your device’s location.
 
-Here you can find a detailed description about the [Windows location service and privacy.](https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088)
+You can find a detailed description and documentation about the [Windows location service and privacy.](https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088)
 
 ## How to enable Location service on Windows 11 for AVD
 
-There are several ways to enable the location service on Windows 11 devices, including Windows 11 multi-session. We will show all options from local settings to Intune configuration / GPOs to adding a registry key. 
+There are several ways to enable the location service on Windows 11 devices, including Windows 11 multi-session. In this post we will show the options (1) local settings, the (2) Intune configuration as well as the (3) registry key configuration. 
 
 Let's start with the local setting, which are not enterprise-grade because it is done manually. 
 
@@ -70,7 +71,7 @@ Please verify that the option **"Let desktop apps access your location"** is ena
 
 ### Via Intune Configuration Policy
 
-The next option would be the ability to enable location services via the Intune configuration policy. We still focus on the **settings catalog** and not on the templates (ADMX, Custom & Co). 
+Option (2) would be the ability to enable location services via the Intune configuration policy. We still focus on the **settings catalog** and not on the templates (ADMX, Custom & Co). 
 
 The Settings Catalog is the only way to define configuration policies for Windows 10+ multisession (currently only System Settings). VDI is also supported with the settings catalog. It will be the next standard for configuration policies in the future. 
 
@@ -92,7 +93,7 @@ That is all to enable location services via Intune configuration policy.
 
 ### Via Registry Key
 
-Another option is to add the following registry to the session host and to your local machine to enable location services:
+The (3) option is to add the following registry to the session host and to your local machine to enable location services:
 
 ```
 Windows Registry Editor Version 5.00
@@ -101,7 +102,9 @@ Windows Registry Editor Version 5.00
 ```
 ## How to enable Location redirection for AVD
 
-To redirect the client location, navigate to Azure Virtual Desktop, select your Hostpool, RDP Properties and add **redirectlocation:i:1** to your existing RDP properties in the advanced tab:
+As a next step you have to configure the RDP Properties for your Hostpool and enable the redirection for the client location. 
+
+In the Azure Portal, navigate to Azure Virtual Desktop, select your Hostpool, RDP Properties and add **redirectlocation:i:1** to your existing RDP properties in the **Advanced** tab:
 
 ```
 redirectlocation:i:1
@@ -109,17 +112,17 @@ redirectlocation:i:1
 
 ![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-007.png)
 
-Or you can enable the location redirection from the **Device redirection** tab and select **Enable location sharing from the local device and redirect to apps in the remote session** and click on **Save**.
+You can also enable this in the **Device redirection** tab and select **Enable location sharing from the local device and redirect to apps in the remote session** and click on **Save**.
 
 ![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-008.png)
 
 > ⚠️ This is a host pool configuration and cannot be set individually per session host. 
 
-This is how to enable location redirection on AVD session host. 
-
-Let's see how it looks and feels. 
+Done! This is how to enable location redirection on AVD session host. 
 
 ## Look and feel
+
+Let's see how it looks and feels. As soon as you logon to your AVD session host and open the browser or maps application you will see you local weather forecast and news. 
 
 ![This image shows the Bowser of a AVD session hosts](/assets/img/2022-06-14/2022-06-14-020.png)
 
