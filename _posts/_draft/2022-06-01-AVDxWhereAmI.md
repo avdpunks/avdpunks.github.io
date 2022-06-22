@@ -90,21 +90,6 @@ If you have created a new policy, you must assign that policy to a user or devic
 
 That is all to enable location services via Intune configuration policy.
 
-### Via GPO
-
-Next, would be to define the Group Policy Setting for enable the Loaction services. Open your Group Policy editor and navigate to the following path:
-
-```
-# Computer configuration
-Computer configuration > Administrative templates > Windows components > Location and sensors > Turn off location
-
-# User configuration
-User configuration > Administrative templates > Windows components > Location and sensors > Turn off location
-```
-> You must disable this setting to enable location services. 
-
-![This image shows the group policy setting to enable location](/assets/img/2022-06-14/2022-06-14-007.png)
-
 ### Via Registry Key
 
 Another option is to add the following registry to the session host and to your local machine to enable location services:
@@ -122,11 +107,11 @@ To redirect the client location, navigate to Azure Virtual Desktop, select your 
 redirectlocation:i:1
 ```
 
-![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-008.png)
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-007.png)
 
 Or you can enable the location redirection from the **Device redirection** tab and select **Enable location sharing from the local device and redirect to apps in the remote session** and click on **Save**.
 
-![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-009.png)
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-008.png)
 
 > ⚠️ This is a host pool configuration and cannot be set individually per session host. 
 
