@@ -124,9 +124,6 @@ Done! This is how to enable location redirection on AVD session host.
 
 Let's see how it looks and feels. As soon as you logon to your AVD session host and open the browser or maps application you will see you local weather forecast and news. 
 
-![This image shows the Bowser of a AVD session hosts](/assets/img/2022-06-14/2022-06-14-020.png)
-
-![This image shows the Bowser of a AVD session hosts](/assets/img/2022-06-14/2022-06-14-0030.png)
 
 ## Conclusion
 
