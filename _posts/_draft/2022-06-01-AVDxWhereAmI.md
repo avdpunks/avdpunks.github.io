@@ -15,6 +15,7 @@ tags: [AVD]
 3. [How to enable Location service on Windows 11 for AVD](#How-to-enable-Location-service-on-Windows-11-for-AVD)
 4. [How to enable Location redirection for AVD](#How-to-enable-Location-redirection-for-AVD)
 5. [Look and feel](#Look-and-feel)
+5. [Limitations](#Limitations)
 6. [Conclusion](#Conclusion)
 
 ## Introduction
