@@ -131,15 +131,13 @@ Here are two examples of how location redirection looks and works:
 
 1. Location redirection for Edge for navigation
 
-https://user-images.githubusercontent.com/35801653/175242958-c5feb4f0-8398-49bd-836e-f44f38647893.mp4
+<video src="https://user-images.githubusercontent.com/35801653/175242958-c5feb4f0-8398-49bd-836e-f44f38647893.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 2. Location redirection for the native Windows weather app
 
-https://user-images.githubusercontent.com/35801653/175242979-be945135-8651-4b2e-9dfd-a0f080063a9a.mp4
-
-[![Watch the video](/assets/img/2022-06-23/2022-06-23-unused-3.png)](https://user-images.githubusercontent.com/35801653/175242979-be945135-8651-4b2e-9dfd-a0f080063a9a.mp4)
-
-![test123](https://user-images.githubusercontent.com/35801653/175242979-be945135-8651-4b2e-9dfd-a0f080063a9a.mp4)
+<video src="https://user-images.githubusercontent.com/35801653/175242979-be945135-8651-4b2e-9dfd-a0f080063a9a.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 ## Limitations
 
