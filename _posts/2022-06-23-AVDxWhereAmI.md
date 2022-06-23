@@ -3,7 +3,7 @@ layout: post
 title:  "Azure Virtual Desktop x Location redirection #WhereAmI"
 date:   2022-06-23 16:00:00 +0100
 categories: AVD
-tags: [AVD]
+tags: [AVD,Azure]
 ---
 # Azure Virtual Desktop (#AVD) x Where am I
 
@@ -40,7 +40,7 @@ We performed all test with
 
 Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the session host machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
 
-Location services must be **enabled** on both client devices and the session host. 
+>Location services must be **enabled on both** client devices and the session host. 
 
 ## Windows location service
 
