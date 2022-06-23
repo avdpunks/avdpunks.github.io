@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Location redirection #WhereAmI"
-date:   2022-06-23 16:00:00 +0100
+date:   2022-06-23 15:00:00 +0100
 categories: AVD
 tags: [AVD]
 ---
 # Azure Virtual Desktop (#AVD) x Where am I
 
-![This image shows the AVDPunk Header](/assets/img/2022-06-14/2022-06-14-000.png)
+![This image shows the AVDPunk Header](/assets/img/2022-06-23/2022-06-23-000.png)
 
 ## Table of contents
 1. [Introduction](#Introduction)
@@ -36,7 +36,7 @@ Nevertheless, in our latest test we notices new settings in the [Windows Client]
 We performed all test with 
 1. Windows 11 21H2 Edge Device
 2. Windows MSRDC Client Version
-3. Windows 11 21H2 Session Host, Intune enrolled, since we are using the settings picker to configure the session host.
+3. Windows 11 21H2 Session Host, Intune enrolled, since we are using the settings picker to configure the session host
 
 Redirecting geo-location information from the client device to remote desktops or published applications requires enabling the geo-location redirection feature on the session host machine, configuring group policy settings on your Active Directory server, and specifying which websites use this feature.
 
@@ -46,9 +46,9 @@ Location services must be **enabled** on both client devices and the session hos
 
 All is about the famous **Windows location service**, which has been available since Windows 10. This service allows users to use their local location in websites and applications, e.g. for navigation requests or weather information. 
 
-![This image shows the Edge location service](/assets/img/2022-06-14/2022-06-14-001.png)
+![This image shows the Edge location service](/assets/img/2022-06-23/2022-06-23-001.png)
 
-![This image shows the Windows 11 weather widget location service](/assets/img/2022-06-14/2022-06-14-002.png)
+![This image shows the Windows 11 weather widget location service](/assets/img/2022-06-23/2022-06-23-002.png)
 
 >💡 Microsoft location service will use a combination of global positioning service (GPS), nearby wireless access points, cell towers, and your IP address (or default location) to determine your device’s location.
 
@@ -64,11 +64,11 @@ Let's start with the local setting, which are not enterprise-grade because it is
 
 From the start menu search for **Location** and open the **Privacy & security > Location** settings then you need to switch the Location services to **On**. Additionally, you can specify the location settings for individual application or service. 
 
-![This image shows the Windows 11 Privacy & security:Location panel](/assets/img/2022-06-14/2022-06-14-003.png)
+![This image shows the Windows 11 Privacy & security:Location panel](/assets/img/2022-06-23/2022-06-23-003.png)
 
 Please verify that the option **"Let desktop apps access your location"** is enabled that is needed for native AVD client. 
 
-![This image shows the Windows 11 "Let desktop apps access your location"](/assets/img/2022-06-14/2022-06-14-004.png)
+![This image shows the Windows 11 "Let desktop apps access your location"](/assets/img/2022-06-23/2022-06-23-004.png)
 
 ### Via Intune Configuration Policy
 
@@ -82,11 +82,11 @@ You can create a new configuration policy or add the setting to an existing poli
 
 Search for **Allow Location** in the settings picker and select **Allow Location** in the results list. 
 
-![This image shows the Intune Settings picker for Allow Location](/assets/img/2022-06-14/2022-06-14-005.png)
+![This image shows the Intune Settings picker for Allow Location](/assets/img/2022-06-23/2022-06-23-005.png)
 
 Next, select **Force Location On. All location privacy settings are toggled...** for the Allow Location setting on the Configuration Settings tab. 
 
-![This image shows the Intune Settings Catalog to allow location](/assets/img/2022-06-14/2022-06-14-006.png)
+![This image shows the Intune Settings Catalog to allow location](/assets/img/2022-06-23/2022-06-23-006.png)
 
 If you have created a new policy, you must assign that policy to a user or device group. 
 
@@ -111,11 +111,11 @@ In the Azure Portal, navigate to Azure Virtual Desktop, select your Hostpool, RD
 redirectlocation:i:1
 ```
 
-![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-007.png)
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-23/2022-06-23-007.png)
 
 You can also enable this in the **Device redirection** tab and select **Enable location sharing from the local device and redirect to apps in the remote session** and click on **Save**.
 
-![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-14/2022-06-14-008.png)
+![This image shows the Azure Portal RDP Properties](/assets/img/2022-06-23/2022-06-23-008.png)
 
 > ⚠️ This is a host pool configuration and cannot be set individually per session host. 
 
@@ -155,8 +155,8 @@ So stay tuned for more updates.
 [Follow us on twitter!](https://twitter.com/avdpunks)
 
 ## Resources
- [Configure Device Redirections](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections)
+ - [Configure Device Redirections](https://docs.microsoft.com/en-us/azure/virtual-desktop/configure-device-redirections)
 
- [RDP Files](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files)
+ - [RDP Files](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files)
 
- [Compare RDP Clients](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#other-redirection-devices-etc)
+ - [Compare RDP Clients](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#other-redirection-devices-etc)
