@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Location redirection #WhereAmI"
-date:   2022-05-29 14:00:00 +0100
+date:   2022-06-23 16:00:00 +0100
 categories: AVD
-tags: [AVD,Landingzone,IaC,Bicep]
+tags: [AVD]
 ---
 # Azure Virtual Desktop (#AVD) x Where am I
 
@@ -124,15 +124,30 @@ Done! This is how to enable location redirection on AVD session host.
 
 Let's see how it looks and feels. As soon as you logon to your AVD session host and open the browser or maps application you will see you local weather forecast and news. 
 
+Our AVD session host is hosted in Azure Brazil South region, so everything will be displayed from Brazil.  With location redirection enabled, you can use their localization. 
+
+Here are two examples of how location redirection looks and works:
+
+1. Location redirection for Edge for navigation
+
 https://user-images.githubusercontent.com/35801653/175242958-c5feb4f0-8398-49bd-836e-f44f38647893.mp4
 
+2. Location redirection for the native Windows weather app
 
 https://user-images.githubusercontent.com/35801653/175242979-be945135-8651-4b2e-9dfd-a0f080063a9a.mp4
 
 
+## Limitations
+
+This feature does not change the Bing or Google search results or news to your location, which only works with web proxy in the correct location. 
+
+These websites are based on the public IP address of the client to show you the search results or news and not on the combination of Global Positioning Service (GPS).
+
 ## Conclusion
 
 Even if it just a limited scope, it is an improvement for the overall user experience and since a couple of days the Azure Portal is showing new features in the RDP Properties section. 
+
+Feel free to test the location redirection in your AVD environment. 
 
 So stay tuned for more updates.
 
