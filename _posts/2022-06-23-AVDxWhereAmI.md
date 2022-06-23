@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Location redirection #WhereAmI"
-date:   2022-06-23 14:00:00 +0100
+date:   2022-06-23 16:00:00 +0100
 categories: AVD
 tags: [AVD]
 ---
