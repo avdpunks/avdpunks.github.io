@@ -47,7 +47,7 @@ This article is designed to give you an overview of how to optimize your Azure V
 
 ## Windows 11/10 multi-session settings (Computer Settings only)
 
-> User settings for Windows 11/10 multi-session are currently not supported. [See more details here.](https://docs.microsoft.com/en-us/mem/intune/fundamentals/azure-virtual-desktop-multi-session#overview)
+> User settings for Windows 11/10 multi-session are now in public preview. At the moment only Windows 11 multi-session is supported for preview, Windows 10 will follow soon. [See more details here.](https://techcommunity.microsoft.com/t5/azure-virtual-desktop/public-preview-intune-user-configuration-for-windows-11-multi/m-p/3562093)
 
 These settings are based on the [Virtual-Desktop-Optimization-Tool](https://github.com/The-Virtual-Desktop-Team/Virtual-Desktop-Optimization-Tool):
 
