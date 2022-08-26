@@ -61,7 +61,7 @@ If your Windows 11 Multisession virtual machines are running on **Azure or** [**
 
 In summary, there are three options for supporting Microsoft 365 Apps on Windows 11 Multisession OS from October 2025. 
 
-These options are native **Azure Virtual Desktop, Azure Stack HCI (currently public preview), and Citrix Cloud on Azure / VMWare Horizon Cloud on Azure**. 
+These options are native **Azure Virtual Desktop, Azure Stack HCI + AVD (currently public preview)**, and **Citrix Cloud on Azure / VMWare Horizon Cloud on Azure**. 
 
 All other hosting platforms do not support Windows 11 Multisession OS from October 2025.
 
