@@ -27,7 +27,7 @@ All statements and dates of the end of support can be find here: [Windows Server
 
 **What does this mean?**
 
-Microsoft 365 Apps will no longer be supported on Windows Server (multisession OS) and you will need to plan a migration path starting in October 2025 if you want to use multisession OS for your virtual desktop environments. 
+Microsoft 365 apps are no longer supported on Windows Server (Multisession OS) and you need to **plan a migration path now to be ready in October 2025** if you want to use Multisession OS for your virtual desktop environments. 
 
 Otherwise, you can only use personal desktops based on Windows 11 Pro/Enterprise. This can be a good solution, but for most customers it is a capacity and budget discussion. Multisession environments combine user sessions on one virtual machine to save costs and take benefit of scaling features. 
 
@@ -41,7 +41,7 @@ Please follow this flowchart to find your answer:
 
 ![Microsoft 365 Apps / Office support from Oct 25](/assets/img/2022-08-31/2022-08-31-001.png)
 
-If you want to use Windows Server 2022 as your base operating system, you'll need to move to the Office LTSC build, but even that support ends a year later in October 2026. Furthermore, Office LTSC requires an additional license.
+If you want to use Windows Server 2022 as your base operating system, you'll need to move to the Office LTSC build, but even that support ends a year later in October 2026. Furthermore, Office LTSC requires an additional license and is not included in existing Microsoft 365 plans.
 
 If your answer is: "Yes, I need a multisession solution for my virtual desktops in the future," then there is **only one option**: you need to switch to the **Windows 11 multisession OS**. 
 
@@ -61,7 +61,7 @@ If your Windows 11 Multisession virtual machines are running on **Azure or** [**
 
 In summary, there are three options for supporting Microsoft 365 Apps on Windows 11 Multisession OS from October 2025. 
 
-These options are native **Azure Virtual Desktop, Azure Stack HCI, and VMWare/Citrix on Azure IaaS**. 
+These options are native **Azure Virtual Desktop, Azure Stack HCI (currently public preview), and Citrix Cloud on Azure / VMWare Horizon Cloud on Azure**. 
 
 All other hosting platforms do not support Windows 11 Multisession OS from October 2025.
 
