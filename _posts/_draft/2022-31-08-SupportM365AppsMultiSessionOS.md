@@ -29,7 +29,7 @@ All statements and dates of the end of support can be find here: [Windows Server
 
 Microsoft 365 Apps will no longer be supported on Windows Server (multisession OS) and you will need to plan a migration path starting in October 2025 if you want to use multisession OS for your virtual desktop environments. 
 
-Otherwise, you can only use personal desktops based on Windows 11 Pro/Enterprise. But that can't be the right solution.
+Otherwise, you can only use personal desktops based on Windows 11 Pro/Enterprise. This can be a good solution, but for most customers it is a capacity and budget discussion. Multisession environments combine user sessions on one virtual machine to save costs and take benefit of scaling features. 
 
 **And now?**
 
