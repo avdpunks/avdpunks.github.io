@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to support Microsoft 365 apps on multi-session OS from 2025?"
-date:   2022-08-26 15:00:00 +0100
+date:   2022-08-26 14:00:00 +0100
 categories: AVD
 tags: [AVD,Microsoft365,AzureStackHCI,Azure]
 ---
