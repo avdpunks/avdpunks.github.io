@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "How to support Microsoft 365 apps on multi-session OS from 2025?"
-date:   2022-08-31 16:00:00 +0100
+date:   2022-08-26 15:00:00 +0100
 categories: AVD
 tags: [AVD,Microsoft365,AzureStackHCI,Azure]
 ---
 # How to support Microsoft 365 apps on multi-session OS from 2025?
 
-![This image shows the AVDPunk Header](/assets/img/2022-08-31/2022-08-31-000.png)
+![This image shows the AVDPunk Header](/assets/img/2022-08-26/2022-08-26-000.png)
 
 ## Table of contents
 1. [Introduction](#Introduction)
@@ -39,7 +39,7 @@ You must ask you the following question:
 
 Please follow this flowchart to find your answer:
 
-![Microsoft 365 Apps / Office support from Oct 25](/assets/img/2022-08-31/2022-08-31-001.png)
+![Microsoft 365 Apps / Office support from Oct 25](/assets/img/2022-08-26/2022-08-26-001.png)
 
 If you want to use Windows Server 2022 as your base operating system, you'll need to move to the Office LTSC build, but even that support ends a year later in October 2026. Furthermore, Office LTSC requires an additional license and is not included in existing Microsoft 365 plans.
 
@@ -51,7 +51,7 @@ What are the options to achieve this approach?
 
 You will find your answer in the following flowchart:
 
-![This image shows the AVDPunk Header](/assets/img/2022-08-31/2022-08-31-002.png)
+![This image shows the AVDPunk Header](/assets/img/2022-08-26/2022-08-26-002.png)
 
 If your Windows 11 Multisession virtual machines are running on **Azure or** [**Azure Stack HCI**](https://docs.microsoft.com/en-us/azure/virtual-desktop/azure-stack-hci-overview), everything is fine and supported. That is a fact for now. 
 
