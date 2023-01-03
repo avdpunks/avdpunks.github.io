@@ -11,10 +11,12 @@ tags: [AVD,MSRDCW]
 
 ## Table of contents
 1. [Introduction](#Introduction)
-2. [What are Azure File Shares handles?](#What-are-Azure-File-Shares-handles?)
+2. [Quick Start Guide](#Quick-Start-Guide)
 3. [Conclusion](#Conclusion)
 
 ## Introduction
+
+
 
 ## Quick Start Guide
 
@@ -24,7 +26,7 @@ tags: [AVD,MSRDCW]
 
 You can download the AVD Quick Start Guide here:
 
-
+[AVD - Quick Start Guide](https://github.com/avdpunks/avdpunks.github.io/blob/main/assets/img/2022-09-30/AVD_QuickStartGuide_v1.0.pdf)
 
 ## Conclusion
 
