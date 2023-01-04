@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Azure Virtual Desktop - Quick Start Guide"
+title:  "Remote Desktop client for Windows - Quick Start Guide"
 date:   2023-01-05 16:00:00 +0100
 categories: AVD
 tags: [AVD,MSRDCW]
 ---
-# Azure Virtual Desktop - Quick Start Guide
+# Remote Desktop client for Windows - Quick Start Guide
 
 ![This image shows the AVDPunk Header](/assets/img/2023-01-05/2023-01-05-000.png)
 
@@ -16,11 +16,11 @@ tags: [AVD,MSRDCW]
 
 ## Introduction
 
-We all love one-pagers to see all features directly on one page and that was the idea for Azure Virtual Desktop - Quick Start Guide.
+We all love one-pagers to see all features directly on one page and that was the idea for the Remote Desktop client for Windows - Quick Start Guide.
 
-We visualized the options and features of the AVD client on two one-pagers. 
+We visualized the options and features of the Remote Desktop client / Azure Virtual Desktop client on two one-pagers. 
 
-Feel free to use and share the AVD Quick Start Guide, and if you miss something, feel free to give us your feedback. 
+Feel free to use and share this Quick Start Guide, and if you miss something, feel free to give us your feedback. 
 
 ## Quick Start Guide
 
@@ -32,7 +32,7 @@ Page two shows all options and functions if you have subscribed to an AVD worksp
 
 ![This image shows the AVDPunk Header](/assets/img/2023-01-05/2023-01-05-002.png)
 
-You can download the AVD Quick Start Guide [here!](https://github.com/avdpunks/avdpunks.github.io/blob/main/assets/img/2023-01-05/AVD_QuickStartGuide_v1.0.pdf)
+You can download the Quick Start Guide [here!](https://github.com/avdpunks/avdpunks.github.io/blob/main/assets/img/2023-01-05/AVD_QuickStartGuide_v1.0.pdf)
 
 ## Links
 
