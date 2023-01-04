@@ -7,7 +7,7 @@ tags: [AVD,MSRDCW]
 ---
 # Azure Virtual Desktop - Quick Start Guide
 
-![This image shows the AVDPunk Header](/assets/img/2022-09-30/2022-09-30-000.png)
+![This image shows the AVDPunk Header](/assets/img/2023-01-05/2023-01-05-000.png)
 
 ## Table of contents
 1. [Introduction](#Introduction)
@@ -26,13 +26,13 @@ Feel free to use and share the AVD Quick Start Guide, and if you miss something,
 
 Page one shows how to subscribe to an AVD workspace:
 
-![This image shows the AVDPunk Header](/assets/img/2022-09-30/2022-09-30-001.png)
+![This image shows the AVDPunk Header](/assets/img/2023-01-05/2023-01-05-001.png)
 
 Page two shows all options and functions if you have subscribed to an AVD workspace:
 
-![This image shows the AVDPunk Header](/assets/img/2022-09-30/2022-09-30-002.png)
+![This image shows the AVDPunk Header](/assets/img/2023-01-05/2023-01-05-002.png)
 
-You can download the AVD Quick Start Guide [here!](https://github.com/avdpunks/avdpunks.github.io/blob/main/assets/img/2022-09-30/AVD_QuickStartGuide_v1.0.pdf)
+You can download the AVD Quick Start Guide [here!](https://github.com/avdpunks/avdpunks.github.io/blob/main/assets/img/2023-01-05/AVD_QuickStartGuide_v1.0.pdf)
 
 ## Links
 
