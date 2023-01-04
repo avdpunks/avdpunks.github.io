@@ -13,9 +13,7 @@ tags: [AVD,Automation,Cost Optimization]
 1. [Introduction](#Introduction)
 2. [Components and workflow](#components-and-workflow)
 3. [Setup shutdown and deallocation on disconnect](#setup-shutdown-and-deallocation-on-disconnect)
-4. [Option I](#option-i)
-5. [Option II](#option-ii)
-6. [Conclusion](#Conclusion)
+4. [Conclusion](#Conclusion)
 
 ## Introduction
 
@@ -30,10 +28,12 @@ If you are optimizing pooled or multi session deployments, please take a closer 
 ## Components and workflow
 
 To deallocate virtual machines we use:
-- the Windows Task Scheduler
-- an Azure function
+- the [Windows Task Scheduler](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page)
+- an [Azure Function](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+
 To interrupt the deallocation process we use:
 - the Windows Task Scheduler
+
 To start the session host again we use: 
 - the Azure Virtual Desktop [Start on Connect](https://learn.microsoft.com/en-us/azure/virtual-desktop/start-virtual-machine-connect) feature
 
