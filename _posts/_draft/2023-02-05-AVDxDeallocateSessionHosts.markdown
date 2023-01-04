@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Deallocate Session Hosts"
-date:   2022-05-08 10:00:00 +0100
+date:   2023-02-05 10:00:00 +0100
 categories: AVD
 tags: [AVD,Automation,Cost Optimization]
 ---
@@ -56,6 +56,8 @@ To start the session host again we use:
 8. If a user is triggering a logon while in phase **2.** or **3.** we **terminate** the scheduled shutdown task and wait for the next logoff to be triggered. 
 
 ## Setup shutdown and deallocation on disconnect
+
+
 
 ```
 Param  
