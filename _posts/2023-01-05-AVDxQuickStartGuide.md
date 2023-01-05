@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Remote Desktop client for Windows - Quick Start Guide"
-date:   2023-01-05 15:00:00 +0100
+date:   2023-01-05 15:01:00 +0100
 categories: AVD
 tags: [AVD,MSRDCW]
 ---
