@@ -59,7 +59,24 @@ This image shows the deallocation workflow:
 
 ## Setup shutdown and deallocation on disconnect
 
-(...)
+### Requirements
+
+RDP Timeouts for idle session and disconnection are enabled
+GPO
+Intune
+Regkey
+> 0x000dbba0 = 15 minutes
+```
+$registryPath = "HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services"
+$Name = "MaxDisconnectionTime"
+$value = '0x000dbba0'
+New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
+$Name = "MaxIdleTime"
+$value = '0x000dbba0'
+New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
+```
+
+
 ### Create an Azure Function to deallocate all stopped VMs
 
 1. Open the **Azure Function page**, you can use this direct link: [https://azfn.cmd.ms/](https://azfn.cmd.ms/), then click **Create** to crate a new Azure function resource. 
