@@ -59,6 +59,7 @@ This image shows the deallocation workflow:
 
 ## Setup shutdown and deallocation on disconnect
 
+(...)
 ### Create an Azure Function to deallocate all stopped VMs
 
 1. Open the **Azure Function page**, you can use this direct link: [https://azfn.cmd.ms/](https://azfn.cmd.ms/), then click **Create** to crate a new Azure function resource. 
@@ -159,10 +160,10 @@ if ($null -ne $StoppedVMs){
 
 ### Create Windows Task Scheduler for shutdown automation
 
-...
+(...)
 
 ## Conclusion
-
+(...)
 ## Resources
 
 https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview
