@@ -159,7 +159,7 @@ if ($null -ne $StoppedVMs){
 
 ### Create Windows Task Scheduler for shutdown automation
 
-
+...
 
 ## Conclusion
 
