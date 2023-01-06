@@ -183,21 +183,21 @@ First, let's show what the scheduled task looks like, but you will need to imple
 
 The scheduled task must run in a **System Context** and enable **Execute with Highest Privileges**.
 
-![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-016.png)
+![This image shows the scheduled task general tab](/assets/img/2023-01-06/2023-01-06-016.png)
 
 As a trigger, you must select **On Event** and then **Security as Protocol** and **4647 as Event ID**, which means that this task will be taken when this specific Event ID occurs. 
 
 > **Note**: This task can be started with a delay, e.g. 15 minutes, but this is optional and not required.If you enable the delay, please follow the [optional chapter.](#optional-scheduled-task-to-stop-the-delayed-shutdown-task)
 
-![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-017.png)
+![This image shows the scheduled trigger](/assets/img/2023-01-06/2023-01-06-017.png)
 
 **Event ID 4647** means that the user has initiated a logout, which can be achieved when the user clicks **Sign out** or the RDP connection disconnect timeout reaches its limit and logs the user out. 
 
-![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-018.png)
+![This image shows the security event id](/assets/img/2023-01-06/2023-01-06-018.png)
 
 Next you need to define the action and select **Start programme**, enter the **path of shutdown.exe** (C:\Windows\System32\shutdown.exe) and add the arguments **/f /s /t 0**.
 
-![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-019.png)
+![This image shows the scheduled task action](/assets/img/2023-01-06/2023-01-06-019.png)
 
 > **Warning**: When you start this task, the system shuts down immediately. Before testing, make sure that all your configuration and work is saved. 
 
