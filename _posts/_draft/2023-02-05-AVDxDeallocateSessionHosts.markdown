@@ -170,7 +170,7 @@ The scheduled task must run in a **System Context** and enable **Execute with Hi
 
 As a trigger, you must select **On Event** and then **Security as Protocol** and **4647 as Event ID**, which means that this task will be taken when this specific Event ID occurs. 
 
-> **Note**: This task can be started with a delay, e.g. 15 minutes, but this is optional and not required. 
+> **Note**: This task can be started with a delay, e.g. 15 minutes, but this is optional and not required.If you enable the delay, please follow the [optional chapter.](#optional-scheduled-task-to-stop-the-delayed-shutdown-task)
 
 ![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-017.png)
 
