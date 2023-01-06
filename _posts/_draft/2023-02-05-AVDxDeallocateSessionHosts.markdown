@@ -160,7 +160,70 @@ if ($null -ne $StoppedVMs){
 
 ### Create Windows Task Scheduler for shutdown automation
 
-(...)
+After you have successfully created an Azure function to deallocate all suspended VMs, you need to create a scheduled task to run on the AVD session host.
+
+First, let's show what the scheduled task looks like, but you will need to implement the scheduled task as part of your imaging or provisioning process for new AVD session hosts. Below we have added the PowerShell commands to create this task automatically.
+
+The scheduled task must run in a **System Context** and enable **Execute with Highest Privileges**.
+
+![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-016.png)
+
+As a trigger, you must select **On Event** and then **Security as Protocol** and **4647 as Event ID**, which means that this task will be taken when this specific Event ID occurs. 
+
+> **Note**: This task can be started with a delay, e.g. 15 minutes, but this is optional and not required. 
+
+![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-017.png)
+
+**Event ID 4647** means that the user has initiated a logout, which can be achieved when the user clicks **Sign out** or the RDP connection disconnect timeout reaches its limit and logs the user out. 
+
+![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-018.png)
+
+Next you need to define the action and select **Start programme**, enter the **path of shutdown.exe** (C:\Windows\System32\shutdown.exe) and add the arguments **/f /s /t 0**.
+
+![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-019.png)
+
+> **WARNING**: When you start this task, the system shuts down immediately. Before testing, make sure that all your configuration and work is saved. 
+
+The following PowerShell script lines create the scheduled task described above. 
+
+You can include these script lines for your custom image deployment or in your custom script extension to automatically implement this task for all new AVD session hosts. Otherwise, you can use Intune Script Deployment if you want to enable this task for existing personal VMs. 
+
+```
+$TaskName = "AVD - Shutdown VM after user logs off"
+$principal = New-ScheduledTaskPrincipal 'NT Authority\SYSTEM' -RunLevel Highest
+$class = cimclass MSFT_TaskEventTrigger root/Microsoft/Windows/TaskScheduler
+$triggerM = $class | New-CimInstance -ClientOnly
+$triggerM.Enabled = $true
+$triggerM.Subscription='<QueryList><Query Id="0" Path="Security"><Select Path="Security">*[System[EventID=4647]]</Select></Query></QueryList>'
+#A DELAY IS OPTIONAL
+#$triggerM.Delay = "PT15M" 
+$actionM = New-ScheduledTaskAction -Execute "$env:windir\System32\shutdown.exe" -Argument "/f /s /t 0"
+$settingsM = New-ScheduledTaskSettingsSet
+$taskM = New-ScheduledTask -Action $actionM -Principal $principal -Trigger $triggerM -Settings $settingsM -Description "AVD - Shutdown VM after user logs off" 
+Register-ScheduledTask $TaskName -InputObject $taskM
+```
+> **Note**: For troubleshooting, please check the event log of the task scheduler. 
+
+#### (OPTIONAL) Scheduled Task to stop the Delayed Shutdown Task
+
+If the delay is enabled for the scheduled shutdown task, you must also schedule a task to cancel the shutdown task when the user logs back in during to the delay phase.
+
+The following PowerShell command terminates all instances of the task **AVD - Shutdown VM after user logs off**:
+```
+Stop-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'
+```
+
+These PowerShell command lines create the scheduled task to terminate all instances of the shutdown task at user logon:
+```
+$TaskName = "AVD - Stop the Delayed Shutdown Task"
+$principal = New-ScheduledTaskPrincipal 'NT Authority\SYSTEM' -RunLevel Highest
+$triggerM = New-ScheduledTaskTrigger -AtLogOn
+$triggerM.Enabled = $true
+$actionM = New-ScheduledTaskAction -Execute "$env:windir\System32\WindowsPowerShell\v1.0\Powershell.exe" -Argument "Stop-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'"
+$settingsM = New-ScheduledTaskSettingsSet
+$taskM = New-ScheduledTask -Action $actionM -Principal $principal -Trigger $triggerM -Settings $settingsM -Description "AVD - Stop the Delayed Shutdown Task" 
+Register-ScheduledTask $TaskName -InputObject $taskM
+```
 
 ## Conclusion
 (...)
