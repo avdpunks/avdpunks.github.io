@@ -182,7 +182,7 @@ Next you need to define the action and select **Start programme**, enter the **p
 
 ![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-019.png)
 
-> **WARNING**: When you start this task, the system shuts down immediately. Before testing, make sure that all your configuration and work is saved. 
+> **Warning**: When you start this task, the system shuts down immediately. Before testing, make sure that all your configuration and work is saved. 
 
 The following PowerShell script lines create the scheduled task described above. 
 
