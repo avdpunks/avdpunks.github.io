@@ -117,7 +117,7 @@ Add this lines and then click **Save**:
 ```
 ![This image shows the function app file requirements.psd1](/assets/img/2023-01-06/2023-01-06-011.png)
 
-10. After changing the app file for the PowerShell modules, you have to restart the entire Azure function. For this select **Overview** and the click **Restart**.
+10. After you change the app file for the PowerShell modules, you need to restart the entire Azure function. To do this, select **Overview** and click **Restart**.
 
 ![This image shows how to restart an Azure function](/assets/img/2023-01-06/2023-01-06-012.png)
 
