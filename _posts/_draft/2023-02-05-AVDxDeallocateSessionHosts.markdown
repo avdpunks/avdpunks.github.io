@@ -81,9 +81,7 @@ This image shows the deallocation workflow:
 
 ![This image shows the Azure feature creation review tab](/assets/img/2023-01-06/2023-01-06-005.png)
 
-6. When the Azure function is successfully created, access the resource. First, you need to **enable a system-assigned managed identity** and **assign an Azure permission role** that enables virtual machine shutdown.
-
-**Open Identity Settings** and change the status for the assigned system from Off to **On**, and then click **Save**. 
+6. When the Azure function is successfully created, access the resource. First, you need to **enable a system-assigned managed identity** and **assign an Azure permission role** that enables virtual machine shutdown. **Open Identity Settings** and change the status for the assigned system from Off to **On**, and then click **Save**. 
 
 This registers the Azure function in Azure Active Directoy so that you can assign specific Azure permissions to this managed identity. Alternatively, you can use a user-assigned managed identity instead of a system-assigned one if you wish. 
 
@@ -91,13 +89,73 @@ This registers the Azure function in Azure Active Directoy so that you can assig
 
 7. Now you can assign Azure permissions to this managed identity. Click **Azure Role Assignments** and then click **Add Role Assignment**. 
 
-![This image shows the Azure function identity settings](/assets/img/2023-01-06/2023-01-06-007.png)
+![This image shows the managed identity settings](/assets/img/2023-01-06/2023-01-06-007.png)
 
 If you want to use this Azure feature only for a specific resource group, select **Resource group as scope** and **your Subscription/Resource group** However, if you want to use it for the entire subscription, select **Subscription as Scope**.
 
 Meanwhile, there is a built-in permission role that allows you to start and deallocate virtual machines. You can use your custom role if you have one, otherwise select the **Desktop Virtualization Power On Off Contributor** role. The same role is also used for the scaling plan feature. 
 
-![This image shows the Azure function identity settings](/assets/img/2023-01-06/2023-01-06-008.png)
+![This image shows the the managed identity role assignment](/assets/img/2023-01-06/2023-01-06-008.png)
+
+8. Next, open the Azure function **Configuration** in the Settings section, as you will need to add a new application setting that defines the resource group. 
+
+Click **New Application Setting** and enter **ResourceGroupName** as the application setting name and your value, which should be the resource group where your personal AVD session hosts are stored. 
+
+![This image shows the adding of application setting](/assets/img/2023-01-06/2023-01-06-009.png)
+
+Click **OK** and then click **Save**. 
+
+9. For our PowerShell script, some modules are required so that we can log in to Azure and stop some virtual machines. Therefore these modules must be added to the file **requirements.psd1**. For this you have to open **App files** under the functions section and then select **requirements.psd1**.
+
+![This image shows the function app files](/assets/img/2023-01-06/2023-01-06-010.png)
+
+Add this lines and then click **Save**:
+
+```
+    'Az.Accounts' = '2.10.4'
+    'Az.Compute' = '5.2.0'
+```
+![This image shows the function app file requirements.psd1](/assets/img/2023-01-06/2023-01-06-011.png)
+
+10. After changing the app file for the PowerShell modules, you have to restart the entire Azure function. For this select **Overview** and the click **Restart**.
+
+![This image shows how to restart an Azure function](/assets/img/2023-01-06/2023-01-06-012.png)
+
+11. Now you need to create a function as a timer trigger so that the function is automatically executed every minute or every 5 minutes or whatever. Within your Azure functions, navigate to **Function**, then click **Create** and select **Timer Trigger**. Then enter a descriptive **name for this function** and the **schedule**, e.g. "*/60 * * *" for each minute.  
+
+> **Note**: The following provides more details on how to define the schedule as NCRONTAB expressions: [NCRONTAB expressions & examples](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=in-process&pivots=programming-language-python#ncrontab-expressions)
+
+![This image shows hwo to create a new timer trigger function](/assets/img/2023-01-06/2023-01-06-013.png)
+
+Click **Create**. 
+
+12. Open **Code + Test** in the Developer section and select the PowerShell script **run.ps1**. Then add the following lines to the script and click **Save**.
+
+```
+$StoppedVMs = Get-AzVM -ResourceGroupName $env:ResourceGroupName -Status | Where-Object {($_.powerstate -eq "VM stopped")}
+if ($null -ne $StoppedVMs){
+    foreach ($VM in $StoppedVMs){
+        Write-Host "VM $($VM.Name) will be deallocated now..."
+        $StopVM = Stop-AzVM -Name $VM.Name -ResourceGroupName $env:ResourceGroupName  -Force
+        If ($StopVM.Status -eq "Succeeded") {
+        Write-Host "VM $($VM.Name) was successfully deallocated..."
+        } else {
+        Write-Host ("Something went wrong! Please check the Azure activity log ...")
+        }
+    }   
+} else {
+    Write-Host ("No VMs could be found in the status stopped...")
+}
+```
+![This image shows the function run.ps1 script](/assets/img/2023-01-06/2023-01-06-014.png)
+
+> **Note**: If you want to change the trigger time, open the **function.json** and change the schedule. 
+
+13. Last step, you can try to run a test if everything is configured as excepted, e.g. Azure Permissions for the managed identity. Click **Test/Run** and then click **Run**. You should see all the script output in the logs terminal.
+
+> **Warning**: Please run this test in your developer resource group, because if everything is configured as exempt, the Azure feature will deallocate all stopped VMs. 
+
+![This image shows the function run.ps1 logs](/assets/img/2023-01-06/2023-01-06-015.png)
 
 ### Create Windows Task Scheduler for shutdown automation
 
