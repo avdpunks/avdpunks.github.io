@@ -61,10 +61,10 @@ This image shows the deallocation workflow:
 
 ### Requirements
 
-RDP Timeouts for idle session and disconnection are enabled
-GPO
-Intune
-Regkey
+- RDP Timeouts for idle session and disconnection are enabled
+- GPO
+- Intune
+- Regkey
 > 0x000dbba0 = 15 minutes
 ```
 $registryPath = "HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services"
