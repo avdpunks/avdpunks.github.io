@@ -225,18 +225,20 @@ Register-ScheduledTask $TaskName -InputObject $taskM
 
 If the delay is enabled for the scheduled shutdown task, you must also schedule a task to cancel the shutdown task when the user logs back in during to the delay phase.
 
-The following PowerShell command terminates all instances of the task **AVD - Shutdown VM after user logs off**:
+The following PowerShell command disable and enable the task **AVD - Shutdown VM after user logs off** again:
 ```
-Stop-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'
+Disable-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'
+Enable-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'
+
 ```
 
-These PowerShell command lines create the scheduled task to terminate all instances of the shutdown task at user logon:
+These PowerShell command lines create the scheduled task to disable and enable the shutdown task at user logon:
 ```
 $TaskName = "AVD - Stop the Delayed Shutdown Task"
 $principal = New-ScheduledTaskPrincipal 'NT Authority\SYSTEM' -RunLevel Highest
 $triggerM = New-ScheduledTaskTrigger -AtLogOn
 $triggerM.Enabled = $true
-$actionM = New-ScheduledTaskAction -Execute "$env:windir\System32\WindowsPowerShell\v1.0\Powershell.exe" -Argument "Stop-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'"
+$actionM = New-ScheduledTaskAction -Execute "$env:windir\System32\WindowsPowerShell\v1.0\Powershell.exe" -Argument "-command &{Disable-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off';Enable-ScheduledTask -TaskName 'AVD - Shutdown VM after user logs off'}"
 $settingsM = New-ScheduledTaskSettingsSet
 $taskM = New-ScheduledTask -Action $actionM -Principal $principal -Trigger $triggerM -Settings $settingsM -Description "AVD - Stop the Delayed Shutdown Task" 
 Register-ScheduledTask $TaskName -InputObject $taskM
