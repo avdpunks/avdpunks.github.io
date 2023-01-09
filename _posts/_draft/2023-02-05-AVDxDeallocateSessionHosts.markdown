@@ -5,7 +5,7 @@ date:   2023-01-12 15:00:00 +0100
 categories: AVD
 tags: [AVD,Automation,Cost Optimization]
 ---
-# Azure Virtual Desktop (#AVD) x Deallocate stopped VMs
+# Azure Virtual Desktop (#AVD) x Shutdown and dallocate Session host at logoff
 
 ![This image shows the AVDPunk Header](/assets/img/2023-01-06/2023-01-06-000.png)
 
@@ -36,12 +36,17 @@ To interrupt the deallocation process we use:
 - the Windows Task Scheduler
 
 To start the session host again we use: 
-- the Azure Virtual Desktop [Start VM on Connect](https://learn.microsoft.com/en-us/azure/virtual-desktop/start-virtual-machine-connect) feature
+- the Azure Virtual Desktop [Start VM on Connect](https://learn.microsoft.com/en-us/azure/virtual-desktop/start-virtual-machine-connect) feature.
+
+Lastly, all remote desktop environment settings are done via: 
+- GPO
+- Intune or
+- directly via Regkey 
 
 This image shows the deallocation workflow:
 ![This image shows the deallocation workflow](/assets/img/2023-01-06/2023-01-06-001.png)
 
-1. By default, AVD session hosts virtual machines (vms) and Remote Desktop Services allows users to disconnect from a remote session without logging off and ending the session. When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. You can limit the amount of time that active, disconnected, and idle (without user input) sessions remain on the server. The configuration of Timeout and Reconnection Settings for Remote Desktop Services Sessions is documented [here](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754272(v=ws.11)).
+1. You can limit the amount of time that active, disconnected, and idle (without user input) sessions remain on the server. The configuration of Timeout and Reconnection Settings for Remote Desktop Services Sessions is documented [here](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754272(v=ws.11)).
 
 2. When a user triggers the logoff or the idle time period is reached and the logoff is executed, a **scheduled task** is triggered. 
 
@@ -59,13 +64,14 @@ This image shows the deallocation workflow:
 
 ## Setup shutdown and deallocation on disconnect
 
-### Requirements
+By default, AVD session hosts virtual machines (vms) and Remote Desktop Services allows users to disconnect from a remote session without logging off and ending the session. When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. To enable RDP Timeouts for idle session and disconnection you can use one of the following options.
 
-- RDP Timeouts for idle session and disconnection are enabled
+### Enable RDP Timeouts
 - GPO
 - Intune
 - Regkey
 > 0x000dbba0 = 15 minutes
+
 ```
 $registryPath = "HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services"
 $Name = "MaxDisconnectionTime"
@@ -76,6 +82,9 @@ $value = '0x000dbba0'
 New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
 ```
 
+Azure continues to charge for the VM core hours while it’s **Stopped**. As soon as the VM is deallocated, you just pay for the storage e.g. OS disk and any attached data disks.
+
+So next let's build a function to deallocate all VMs with the Stopped state.
 
 ### Create an Azure Function to deallocate all stopped VMs
 
@@ -219,11 +228,14 @@ $settingsM = New-ScheduledTaskSettingsSet
 $taskM = New-ScheduledTask -Action $actionM -Principal $principal -Trigger $triggerM -Settings $settingsM -Description "AVD - Shutdown VM after user logs off" 
 Register-ScheduledTask $TaskName -InputObject $taskM
 ```
+
 > **Note**: For troubleshooting, please check the event log of the task scheduler. 
 
 #### (OPTIONAL) Scheduled Task to stop the Delayed Shutdown Task
 
-If the delay is enabled for the scheduled shutdown task, you must also schedule a task to cancel the shutdown task when the user logs back in during to the delay phase.
+We all love coffee breaks 😅 you might want to add an delay after the logoff to keep the session host vm up an running to ensure a better user experience.
+
+The delay is configurd and enabled for the scheduled shutdown task. You must also schedule a task to cancel the shutdown task when the user logs back in during to the delay phase.
 
 The following PowerShell command disable and enable the task **AVD - Shutdown VM after user logs off** again:
 ```
@@ -245,10 +257,17 @@ Register-ScheduledTask $TaskName -InputObject $taskM
 ```
 
 ## Conclusion
-(...)
+
+Compute cost of session host VMs are by far the largest cost component. Implementing the process above to automatically turn VMs on at connect and turn them off once the users are no longer connected or they are in idle to long will help you to create a cost-effective AVD environment while avoiding a capital-intensive nightmare.
+
+There are other options like Azure Resource Health triggers, Logic Apps or Automation Accounts we choose Functions since they offer the best control over security options, troubleshooting and logging insights and are the least expensive solution. 
+
+Do More With Less - Less complexity, Less time and Less cost 😉
+
 ## Resources
 
-https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview
-https://learn.microsoft.com/en-us/azure/virtual-desktop/tag-virtual-desktop-resources 
+Learn more about [Cost Mangement](https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview)
+
+Learn more about [Tagging](https://learn.microsoft.com/en-us/azure/virtual-desktop/tag-virtual-desktop-resources)
 
 Interested in further cost tracking options, check the Azure Academy for this here: https://www.youtube.com/watch?v=dUft4FZ40O8 
