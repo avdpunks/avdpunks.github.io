@@ -66,10 +66,38 @@ This image shows the deallocation workflow:
 By default, AVD session hosts virtual machines (vms) and Remote Desktop Services allows users to disconnect from a remote session without logging off and ending the session. When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. To enable RDP Timeouts for idle session and disconnection you can use one of the following options.
 
 ### Enable RDP Timeouts
-- GPO
-- Intune
-- Regkey
-> 0x000dbba0 = 15 minutes
+
+There are several options to enable RDP timeouts. Here you will learn 3 options: via Intune settings catalog, via Active Directoy Group policies and via registry key. 
+
+#### Via Intune Settings Catalog
+
+1. First, you need to create a new Device Configration profile or use a existing profile to add the RDP timeout settings. The configuration profile can be created in profile type templates or in the settings catalog. The next steps show the RDP settings via settings catalog. 
+
+2. Next, search for "**Session Time Limits**" in the settings picker and add the settings "**Set time limit for active but idle Remote Desktop Services sessions**" and "**Set time limit for disconnected sessions**" to your configuration profile.
+
+> **Note**: These RDP timeout settings are available as computer and user settings. 
+
+![This image shows the Intune settings picker](/assets/img/2023-01-06/2023-01-10-000.png)
+
+3. Now you need to activate these settings and set your preferred timeouts. 
+
+![This image shows the Intune RDP Timeout configuration settings](/assets/img/2023-01-06/2023-01-10-001.png)
+
+4. Then **assign the Intune device configuration to a device or user group**, depending on whether you select the device or user setting. 
+#### Via Active Directoy Group policies
+
+You can find the RDP timeout settings under the following path in the GPO editor:
+
+```
+Computer Configuration/Administrative Templates/Windows Components/Remote Desktop Services/Remote Desktop Session Host/Session Time Limits
+```
+
+![This image shows the GPO RDP Timeout settings](/assets/img/2023-01-06/2023-01-10-002.png)
+#### Via Registry Key
+
+You can use the following PowerShell commands to add the RDP timeouts by adding two registry keys. The value in milliseconds must be specified in hex format, e.g. 0x000dbba0 = 900000ms = 15mins. 
+
+> **Note**: You can use the PowerShell function **'{0:x}' -f [number in ms]** to convert from decimal to hex.
 
 ```
 $registryPath = "HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services"
@@ -80,6 +108,7 @@ $Name = "MaxIdleTime"
 $value = '0x000dbba0'
 New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
 ```
+(????)
 
 Azure continues to charge for the VM core hours while it’s **Stopped**. As soon as the VM is deallocated, you just pay for the storage e.g. OS disk and any attached data disks.
 
