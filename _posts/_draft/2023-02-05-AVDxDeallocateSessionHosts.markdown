@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Azure Virtual Desktop x Deallocate Session Hosts"
+title:  "Azure Virtual Desktop x Shutdown and deallocate Session host at logoff"
 date:   2023-01-12 15:00:00 +0100
 categories: AVD
 tags: [AVD,Automation,Cost Optimization]
 ---
-# Azure Virtual Desktop (#AVD) x Shutdown and dallocate Session host at logoff
+# Azure Virtual Desktop (#AVD) x Shutdown and deallocate Session host at logoff
 
 ![This image shows the AVDPunk Header](/assets/img/2023-01-06/2023-01-06-000.png)
 
