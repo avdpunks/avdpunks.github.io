@@ -9,7 +9,6 @@ tags: [AVD,Automation,Cost Optimization]
 
 ![This image shows the AVDPunk Header](/assets/img/2023-01-06/2023-01-06-000.png)
 
-
 ## Table of contents
 1. [Introduction](#Introduction)
 2. [Components and workflow](#components-and-workflow)
