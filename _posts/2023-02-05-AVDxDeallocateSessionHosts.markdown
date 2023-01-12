@@ -289,7 +289,6 @@ Compute cost of session host VMs are by far the largest cost component. Implemen
 There are other options like Azure Resource Health triggers, Logic Apps or Automation Accounts we choose Functions since they offer the best control over security options, troubleshooting and logging insights and are the least expensive solution. 
 
 Do More With Less - Less complexity, Less time and Less cost 😉
-
 ## Resources
 
 Learn more about [Cost Mangement](https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview)
