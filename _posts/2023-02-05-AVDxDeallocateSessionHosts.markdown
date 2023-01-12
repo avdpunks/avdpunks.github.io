@@ -21,7 +21,7 @@ Azure Virtual Desktop (AVD) costs come from two sources: underlying Azure resour
 
 In the cloud, we want to "Do More, With Less" and maximize the efficiency, ROI and costs of our cloud environment. For AVD this means; the less users are connected to their personal session hosts, the less compute resources should be allocated. 
 
-In this article, we'll explain how to automatically deallocate unused **personal** VMs to maximize your cost optimization. 
+In this article, we'll explain how to automatically deallocate unused **personal** VMs to increase your cost optimization score. 
 
 If you are optimizing pooled or multi session deployments, please take a closer look at the AVD [Scaling Plan](https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scenarios) feature.
 
@@ -63,7 +63,7 @@ This image shows the deallocation workflow:
 
 ## Setup shutdown and deallocation on disconnect
 
-By default, AVD session hosts virtual machines (vms) and Remote Desktop Services allows users to disconnect from a remote session without logging off and ending the session. When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. To enable RDP Timeouts for idle session and disconnection you can use one of the following options.
+By default, AVD session hosts virtual machines (VMs) and Remote Desktop Services allows users to disconnect from a remote session without logging off and ending the session. When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. To enable RDP Timeouts for idle session and disconnection you can use one of the following options.
 
 ### Enable RDP Timeouts
 
