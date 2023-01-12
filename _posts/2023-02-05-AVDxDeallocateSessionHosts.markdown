@@ -71,7 +71,7 @@ There are several options to enable RDP timeouts. Here you will learn 3 options:
 
 #### Via Intune Settings Catalog
 
-1. First, you need to create a new Device Configration profile or use a existing profile to add the RDP timeout settings. The configuration profile can be created in profile type templates or in the settings catalog. The next steps show the RDP settings via settings catalog. 
+1. First, open the Intune site ([in.cmd.ms](https://in.cmd.ms)) and then you need to create a new Device Configration profile or use a existing profile to add the RDP timeout settings. The configuration profile can be created in profile type templates or in the settings catalog. The next steps show the RDP settings via settings catalog. 
 
 2. Next, search for "**Session Time Limits**" in the settings picker and add the settings "**Set time limit for active but idle Remote Desktop Services sessions**" and "**Set time limit for disconnected sessions**" to your configuration profile.
 
