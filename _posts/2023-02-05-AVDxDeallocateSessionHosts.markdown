@@ -108,13 +108,12 @@ $Name = "MaxIdleTime"
 $value = '0x000dbba0'
 New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
 ```
-(????)
+
+### Create an Azure Function to deallocate all stopped VMs
 
 Azure continues to charge for the VM core hours while it’s **Stopped**. As soon as the VM is deallocated, you just pay for the storage e.g. OS disk and any attached data disks.
 
 So next let's build a function to deallocate all VMs with the Stopped state.
-
-### Create an Azure Function to deallocate all stopped VMs
 
 1. Open the **Azure Function page**, you can use this direct link: [https://azfn.cmd.ms/](https://azfn.cmd.ms/), then click **Create** to crate a new Azure function resource. 
 
