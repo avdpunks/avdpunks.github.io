@@ -37,7 +37,7 @@ This article is designed to give you an overview of how to optimize your Azure V
 
 7. Now you can **search for a setting** and enable this setting for your profile.
 
-> The user settings are shown as (users) not yet supported for Windows 11/10 Multisession.
+> **Note:** The user settings are shown as (users).
 
 8. After pick your settings, you need to **configure these settings** and click on **Next**.
 
