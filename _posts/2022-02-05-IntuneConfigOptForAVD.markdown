@@ -117,7 +117,7 @@ These computer settings are based on the [Virtual-Desktop-Optimization-Tool](htt
 
 ## How to import an Intune device configuration profile
 
-You can automatically provide these settings in the Intune configuration profile via MS Graph or via Intune portal. However, you need a template file with all the optimized settings. Here you can download our exported [JSON policy template file.](/assets/img/2022-02-05/DeviceConfig-WIN-VDI-Optimization_2023-11-20.json).
+You can automatically provide these settings in the Intune configuration profile via MS Graph or via Intune portal. However, you need a template file with all the optimized settings. Here you can download our exported [JSON policy template file.](/assets/img/2022-02-05/DeviceConfig-WIN-VDI-Optimization_2023-11-20.json)
 
 
 First open the **Micorosft Intune Admin Center** ([https://in.cmd.ms](https://in.cmd.ms)) and then navigate to **Devices** and **Configuration Profiles**.
