@@ -12,8 +12,9 @@ This article is designed to give you an overview of how to optimize your Azure V
 ## Table of contents
 1. [How to configure profiles](#How-to-configure-profiles)
 2. [Windows 11/10 multi-session settings (Computer Settings only)](#windows-1110-multi-session-settings-computer-settings-only)
-3. [Where is the option "gpupdate /force"?](#where-is-the-option-gpupdate-force)
-4. [Troubleshooting](#Troubleshooting)
+3. [How to import an Intune device configuration profile](#how-to-import-an-intune-device-configuration-profile)
+4. [Where is the option "gpupdate /force"?](#where-is-the-option-gpupdate-force)
+5. [Troubleshooting](#Troubleshooting)
 
 ## How to configure profiles
 
@@ -114,26 +115,24 @@ These computer settings are based on the [Virtual-Desktop-Optimization-Tool](htt
 
 > The settings for chat icon and widgets are effective only on Windows 11.
 
-You can automatically provide these settings in the Intune configuration profile via MS Graph. However, you need a template file with all the optimized settings. Sander Rozemuller has created a JSON template file with these settings, which can be downloaded [here](https://github.com/srozemuller/AVD/blob/main/OperationNorthStar/Configurations/AVD-Optimization/avd-optimization.settings.json).
+## How to import an Intune device configuration profile
 
-He also created a snippet to import this JSON template into Intune as a configuration profile.  
-```
-$policyBody = @{
-    "@odata.type"  = "#microsoft.graph.deviceManagementConfigurationPolicy"
-    "name"         = "AVD optimization settings"
-    "description"  = "AVD Best Practices"
-    "platforms"    = "windows10"
-    "technologies" = "mdm"
-    "settings"     = @( 
-        Get-Content ./avd-optimization.settings.json | ConvertFrom-Json
-    )
-}
-$jsonBody = $policyBody | ConvertTo-Json -Depth 99
-$script:PostPolurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
-$policy = Invoke-RestMethod -Uri $script:PostPolurl -Method POST -Headers $script:token -Body $jsonBody -ContentType 'Application/json'
-$policyId = $policy.id
-```
-Click here for the full article by Sander Rozemuller: [Secure and optimize AVD and CloudPC using Microsoft Endpoint Manager]( https://rozemuller.com/secure-and-optimize-avd-and-cloudpc-using-microsoft-endpoint-manager/) 
+You can automatically provide these settings in the Intune configuration profile via MS Graph or via Intune portal. However, you need a template file with all the optimized settings. Here you can download our exported [JSON policy template file.](/assets/img/2022-02-05/DeviceConfig-WIN-VDI-Optimization_2023-11-20.json).
+
+
+First open the Micorosft Intune Admin Center ([https://in.cmd.ms](https://in.cmd.ms)) and then navigate to Devices and Configuration Profiles.
+
+Next, click on **Create** and then select **Import policy** to import a policy from a JSON file.
+
+> This Intune Import Policy feature is currently in public preview. 
+
+![2023-11-20-000.png](/assets/img/2022-02-05/2023-11-20-000.png)
+
+**Select the policy template file (JSON)**, e.g. DeviceConfig-WIN-VDI-Optimization_2023-11-20.json, and **enter a name** for your new device configuration profile, then click **Save**.
+
+![2023-11-20-000.png](/assets/img/2022-02-05/2023-11-20-001.png)
+
+And now your VDI optimization device configuration profile is available and you can change the settings.
 
 ## Where is the option "gpupdate /force"?
 
