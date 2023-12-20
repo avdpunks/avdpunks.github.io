@@ -20,12 +20,14 @@ tags: [AVD,HPC]
 6. [Conclusion](#Conclusion)
 
 ## Introduction
-What is a Cloud Engineering Workspace without the loved engineering pheripherie device, the Spacemouse? In this post we cover all essentials around the RemoteFX USB redirection in an Azure Virtual Desktop (AVD) or Remote Desktop environement and how to configure it.
+What is a Cloud Engineering Workspace without the loved engineering pheripherie device, the Spacemouse and all the other fancy peripherals they are working with? In this post we cover all essentials around the "legacy" RemoteFX USB redirection in an Azure Virtual Desktop (AVD), Windows 365 (W365) and Remote Desktop environement and how to configure it.
+
+This is especially relevant with the (latest) announce previews for [Windows 365 GPU](https://learn.microsoft.com/en-us/windows-365/enterprise/gpu-cloud-pc) powered workloads. 
 
 *Note: Ofcorse this applies to other USB devices too.* 😊
 
 ## Device redirection overview
-AVD and the RDP allow us to use specific types of devices effectively in a remote session, e.g.:
+AVD, Windows 365 and RDPs allow us to use specific types of devices effectively in a remote session, e.g.:
 - Easy Print, which allows users to print to local printers in remote sessions
 - Drive Redirection, which allows users to access the file system on any local drive in a remote session, including USB drives
 - Smart Card Redirection, which allows users to authenticate to and in a remote session by using smart cards/e-tokens
@@ -34,10 +36,11 @@ AVD and the RDP allow us to use specific types of devices effectively in a remot
 - Audio Redirection, which allows recording and playback of audio in remote sessions
 - Port Redirection, which allows the use of serial and parallel ports in remote sessions
 
-These high-level redirections can be controlled and resitricted via the [RDP Properties](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files) directly from the portal.
+For AVD, these high-level redirections can be controlled and resitricted via the [RDP Properties](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files) directly from the portal.
 
 However, there are many devices like the spacemouse, printers webcams, scanners and more which are not covered by this redirections.
 RemoteFX USB redirection enables you to redirect these devices and brings you the best of both worlds and an improved user experience.
+
 *Note* RemoteFX USB redirection compliments your high-level redirection and doesn't replace them.
 
 Here is a table that compares and contrasts the two forms of redirection.
@@ -64,7 +67,7 @@ With new features like Adaptive Graphics, RemoteFX Multi-Touch, RemoteFX Media R
 With Windows Server 2012, and subsequent releases including RemoteFX in Windows 10, RemoteFX was designed with more default features that made it simpler and easier to use.
 
 ## RemoteFX Configuration ##
-## Enable RemoteFX on your AVD session hosts ##
+## Enable RemoteFX on your AVD session hosts or Windows 365 Cloud PC ##
 1. Open run with **Windows + R** and enter **gpedit.msc**. Open the "Local Group Policy Editor".
 
 2. From the navigation tree on the left, select: **Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Device and Resource Redirection**. Open **Do not allow supported Plug and Play device redirection** and select **Allow plug&play device redirection**
@@ -73,7 +76,22 @@ With Windows Server 2012, and subsequent releases including RemoteFX in Windows 
 
 3. Choose the **Disabled** option and click **OK** in the pop-up window as shown below.disabled do not allow plug and play device redirection
 
-4. **Restart** your session host to apply the changes
+*Note* Yes, it's Disabled. Double negative 🫣
+
+4. Next navigte to **Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Services Session Host > Remote Session Environment > RemoteFX for Windows Server 2008 R2**. Open **Configure RemoteFX** and select **Enabled**
+
+![2022-03-01-000.png](/assets/img/2022-03-01/2022-03-01-xxx.png) 
+
+5. **Restart** your session host or Cloud PC to apply the changes. 
+
+*Note* You can set this via PowerShell.
+
+```
+    $RegistryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services"
+    Set-ItemProperty -Path $RegistryPath -Name "fEnableVirtualizedGraphics" -Value 1 -Type DWord
+    Set-ItemProperty -Path $RegistryPath -Name "fDisablePNPRedir" -Value 0 -Type DWord
+    Restart-Computer -Force
+```
 
 ## Enable RemoteFX USB redirection in Windows 10/Windows 11 ##
 The RemoteFX USB redirection feature is disabled by default so lets enable it. 
@@ -84,9 +102,9 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 
 ![2022-03-01-001.png](/assets/img/2022-03-01/2022-03-01-001.png)
 
-3. Set **Allow RDP redirection of other supported RemoteFX USB devices from this computer** to **Enabled** and specify which users have RemoteFX USB device redirection permission. Click **OK** and finish the configuration.
+3. Set **Allow RDP redirection of other supported RemoteFX USB devices from this computer** to **Enabled** and select **Administrators and Users**. Click **OK** and finish the configuration.
 
-4. Finally run “gpupdate /force” to update the machine’s policy.
+4. Finally run **gpupdate /force** to update the machine’s policy.
 
 Note: Ofcorse you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
 After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location.
@@ -95,11 +113,17 @@ OR you use Microsoft Endpoint Configuration Manager (#MEM) to configure this set
 
 ![MEMConfig](/assets/img/2022-03-01/2022-03-01-002.png)
 
-Lastly, connect your spacemouse to you device, make sure it's not in use by any local application and enjoy it in you remote session💡.
+## Testing
+Lastly, connect your spacemouse to you device, make sure it's not in use by any local application. Devices can't be used on both local devices and the remote session simultaneously. A device can either be mapped locally or into the virtual desktop.
+And make sure you install the driver on the virtual desktop in case the device is not a "plug and play" device.
 
-## Conclusion ##
-RemoteFX acts as a catch-all mechanism that redirects these USB devices! Unlike high-level redirections such as drive redirection, RemoteFX USB redirection happens at the port protocol (USB request block or URB) level, and is similar to how one can redirect serial or parallel ports via RDP. This provides some unique advantages, as you’ll see below. However, RemoteFX USB redirection is meant to supplement high-level redirections, not to supplant them. By combining RemoteFX USB redirection with RDP high-level device redirections, you can have the best of both worlds. 
+![WindowsApp](/assets/img/2022-03-01/2022-03-01-YYY.png)
+
+## Conclusion ## 
+RemoteFX acts as a catch-all mechanism that redirects these USB devices! Unlike high-level redirections such as drive redirection, RemoteFX USB redirection happens at the port protocol (USB request block or URB) level, and is similar to how one can redirect serial or parallel ports via RDP. This provides some unique advantages. However, RemoteFX USB redirection is meant to supplement high-level redirections, not to supplant them. By combining RemoteFX USB redirection with RDP high-level device redirections, you can have the best of both worlds. 
 
 ## Resources ##
 https://en.wikipedia.org/wiki/RemoteFX
 https://docs.microsoft.com/en-us/virtualization/community/team-blog/2010/20100317-explaining-microsoft-remotefx
+https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files
+https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#redirection-support 
