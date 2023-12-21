@@ -11,10 +11,12 @@ tags: [AVD,HPC,W365]
 
 ## Table of contents
 1. [Introduction](#Introduction)
-2. [Device redirection overview](#Device-redirection-overview)
-3. [What is RemoteFX](#What-is-remotefx)
+2. [What is RemoteFX](#What-is-remotefx)
+3. [Device redirection overview](#Device-redirection-overview)
 4. [RemoteFX Configuration](#RemoteFX-configuration)
-5. [Conclusion](#Conclusion)
+5. [Testing](#testing)
+6. [Conclusion](#Conclusion)
+7. [Resources](#resources)
 
 ## Introduction
 What is a Cloud Engineering Workspace without the loved engineering pheripherie device, the Spacemouse and all the other fancy peripherals they are working with? In this post we cover all essentials around the "legacy" RemoteFX USB redirection in an Azure Virtual Desktop (AVD), Windows 365 (W365) and Remote Desktop environement and how to configure it.
@@ -22,6 +24,17 @@ What is a Cloud Engineering Workspace without the loved engineering pheripherie 
 This is especially relevant with the (latest) announce previews for [Windows 365 GPU](https://learn.microsoft.com/en-us/windows-365/enterprise/gpu-cloud-pc) powered workloads. 
 
 >**Note:** Of course, this applies to other USB devices too.😊
+
+## What is RemoteFX?
+RemoteFX was invented and developed by Calista Technologies and quickly acquired by Microsoft in 2008. 
+
+It was released in 2011 as part of Service Pack 1 (SP1) for Windows Server 2008 R2 and Windows. 
+It was designed to deliver a rich user experience and graphic hardware support to Hyper-V virtual machines (VMs).
+Over the last 9+ years, RemoteFX improved the overall user experience during a remote desktop session and let users enjoy high-quality media support, audio-synchronization, graphics, and RemoteFX USB redirection.
+
+With new features like Adaptive Graphics, RemoteFX Multi-Touch, RemoteFX Media Redirection, and RemoteFX for WAN the RDP Protocol and experience improved massivley. 
+
+With Windows Server 2012, and subsequent releases including RemoteFX in Windows 10, RemoteFX was designed with more default features that made it simpler and easier to use. What remains are the settings you can enable or disable.
 
 ## Device redirection overview
 AVD, Windows 365 and RDPs allow us to use specific types of devices effectively in a remote session, e.g.:
@@ -46,19 +59,8 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 | Does not require drivers on the local client | Requires drivers for the device to be installed on the local client| 
 | Requires the device driver to be installed on the session host or cloud pc | Generally does not require drivers on the session host or cloud pc | 
 |  Uses one redirection method for many types of devices | Uses a specific, unique method for each type of device being redirected | 
-| Forwards URBs to and from the device over the RDP connection | Exposes high-level device functionality in the remote session by using an optimized protocol for the device type | 
+| Forwards [URBs](https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/communicating-with-a-usb-device) to and from the device over the RDP connection | Exposes high-level device functionality in the remote session by using an optimized protocol for the device type | 
 | Enables ONLY ONE session to use a device at a given time; the local client cannot use the device while an RDP session is using it | Enables any number of sessions to access the device simultaneously, including the local client | 
-
-## What is RemoteFX?
-RemoteFX was invented and developed by Calista Technologies and quickly acquired by Microsoft in 2008. 
-
-It was released in 2011 as part of Service Pack 1 (SP1) for Windows Server 2008 R2 and Windows. 
-It was designed to deliver a rich user experience and graphic hardware support to Hyper-V virtual machines (VMs).
-Over the last 9+ years, RemoteFX improved the overall user experience during a remote desktop session and let users enjoy high-quality media support, audio-synchronization, graphics, and RemoteFX USB redirection.
-
-With new features like Adaptive Graphics, RemoteFX Multi-Touch, RemoteFX Media Redirection, and RemoteFX for WAN the RDP Protocol and experience improved massivley. 
-
-With Windows Server 2012, and subsequent releases including RemoteFX in Windows 10, RemoteFX was designed with more default features that made it simpler and easier to use. What remains are the settings you can enable or disable.
 
 ## RemoteFX Configuration ##
 ### Enable RemoteFX on your AVD session hosts or Windows 365 Cloud PC ##
