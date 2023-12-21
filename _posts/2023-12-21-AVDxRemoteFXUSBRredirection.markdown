@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Azure Virtual Desktop x Advanced Device Redirection"
+title:  "Windows 365 x Azure Virtual Desktop x Advanced Device Redirection"
 date:   2023-12-21 15:30:00 +0100
 categories: AVD
 tags: [AVD,HPC,W365,RemoteFX,Intune]
