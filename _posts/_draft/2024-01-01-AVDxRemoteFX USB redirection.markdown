@@ -78,7 +78,7 @@ With Windows Server 2012, and subsequent releases including RemoteFX in Windows 
     Restart-Computer -Force
 ```
 
-## Enable RemoteFX USB redirection in Windows 10/Windows 11 ##
+## Enable RemoteFX USB redirection on your local windows device ##
 The RemoteFX USB redirection feature is disabled by default so lets enable it. 
 
 1. On your client run **gpedit.msc**.
