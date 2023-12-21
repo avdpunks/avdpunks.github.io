@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Advanced Device Redirection"
-date:   2024-01-01 10:00:00 +0100
+date:   2023-12-21 15:30:00 +0100
 categories: AVD
-tags: [AVD,HPC,W365]
+tags: [AVD,HPC,W365,RemoteFX,Intune]
 ---
 # Windows 365 x Azure Virtual Desktop (#AVD) x RemoteFX - USB redirection
 
@@ -68,7 +68,7 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 
 2. From the navigation tree on the left, select: **Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Device and Resource Redirection**. Open **Do not allow supported Plug and Play device redirection** and select **Allow plug&play device redirection**
 
-![2024-01-01-000.png](/assets/img/2024-01-01/2024-01-01-000.png)
+![2023-12-21-000.png](/assets/img/2023-12-21/2023-12-21-000.png)
 
 3. Choose the **Disabled** option and click **OK** in the pop-up window as shown below.disabled do not allow plug and play device redirection
 
@@ -76,13 +76,13 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 
 4. Next navigte to **Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Services Session Host > Remote Session Environment > RemoteFX for Windows Server 2008 R2**. Open **Configure RemoteFX** and select **Enabled**
 
-![2024-01-01-004.png](/assets/img/2024-01-01/2024-01-01-004.png) 
+![2023-12-21-004.png](/assets/img/2023-12-21/2023-12-21-004.png) 
 
 5. **Restart** your session host or Cloud PC to apply the changes. 
 
 >**Note:** Of course, you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
 After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location or you use Microsoft Intune to configure this settings.
-![MEMConfig](/assets/img/2024-01-01/2024-01-01-005.png)
+![MEMConfig](/assets/img/2023-12-21/2023-12-21-005.png)
 
 >**Note:** You can set this via PowerShell.
 ```
@@ -99,7 +99,7 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 
 2. Open: **Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Connection Client\RemoteFX USB Redirection**.
 
-![2024-01-01-001.png](/assets/img/2024-01-01/2024-01-01-001.png)
+![2023-12-21-001.png](/assets/img/2023-12-21/2023-12-21-001.png)
 
 3. Set **Allow RDP redirection of other supported RemoteFX USB devices from this computer** to **Enabled** and select **Administrators and Users**. Click **OK** and finish the configuration.
 
@@ -107,7 +107,7 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 
 >**Note:** Of course, you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
 After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location or you use Microsoft Intune to configure this settings.
-![MEMConfig](/assets/img/2024-01-01/2024-01-01-002.png)
+![MEMConfig](/assets/img/2023-12-21/2023-12-21-002.png)
 
 >**Note:** You can set this via PowerShell.
 
@@ -122,7 +122,7 @@ Last but least, Connect via a Remote Desktop Client (Azure Virtual Desktop, Wind
 
 Devices can't be used on both local devices and the remote session simultaneously. A device can either be mapped locally or into the virtual desktop. And make sure you install the driver on the virtual desktop in case the device is not a "plug and play" device.
 
-![WindowsApp](/assets/img/2024-01-01/2024-01-01-003.png)
+![WindowsApp](/assets/img/2023-12-21/2023-12-21-003.png)
 
 ## Conclusion ## 
 Daniel Weppeler and myself had quite alt of design, engineering and graphic intense engagement lately and this settings absolutly increase the user experience. 
