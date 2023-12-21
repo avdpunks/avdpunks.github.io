@@ -80,8 +80,11 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 
 5. **Restart** your session host or Cloud PC to apply the changes. 
 
->**Note:** You can set this via PowerShell.
+>**Note:** Of course, you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
+After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location or you use Microsoft Intune to configure this settings.
+![MEMConfig](/assets/img/2024-01-01/2024-01-01-005.png)
 
+>**Note:** You can set this via PowerShell.
 ```
     $RegistryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services"
     Set-ItemProperty -Path $RegistryPath -Name "fEnableVirtualizedGraphics" -Value 1 -Type DWord
@@ -103,11 +106,16 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 4. Finally run **gpupdate /force** to update the machine’s policy.
 
 >**Note:** Of course, you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
-After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location.
-
-OR you use Microsoft Intune to configure this settings.
-
+After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location or you use Microsoft Intune to configure this settings.
 ![MEMConfig](/assets/img/2024-01-01/2024-01-01-002.png)
+
+>**Note:** You can set this via PowerShell.
+
+```
+    $RegistryPath = "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client"
+    Set-ItemProperty -Path $RegistryPath -Name "fUsbRedirectionEnableMode" -Value 2 -Type DWord
+    Restart-Computer -Force
+```
 
 ## Testing
 Last but least, Connect via a Remote Desktop Client (Azure Virtual Desktop, Windows 365 or Windows App) to your session host or Cloud PC. You will see a new icon in the connection bar to connect your #USBDEVICE. Make sure it's not in use by any local application. 
