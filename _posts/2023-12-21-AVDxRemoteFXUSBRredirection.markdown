@@ -82,6 +82,7 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 
 >**Note:** Of course, you can use the Group Policy Management to configure this settings via Active Directory Group Policies 😊.
 After creating and configuring a new policy, link the policy to the Organizational Unit of the target machine’s location or you use Microsoft Intune to configure this settings.
+
 ![MEMConfig](/assets/img/2023-12-21/2023-12-21-005.png)
 
 >**Note:** You can set this via PowerShell.
