@@ -40,6 +40,15 @@ RemoteFX USB redirection enables you to redirect these devices and brings you th
 
 >**Note:** RemoteFX USB redirection compliments your high-level redirection and doesn't replace them.
 
+## Device redirections compared
+| RemoteFX USB Redirection | RDP High-Level Device Redirection |
+| --------------- | --------------- |
+| Does not require drivers on the local client | Requires drivers for the device to be installed on the local client| 
+| Requires the device driver to be installed on the session host or cloud pc | Generally does not require drivers on the session host or cloud pc | 
+|  Uses one redirection method for many types of devices | Uses a specific, unique method for each type of device being redirected | 
+| Forwards URBs to and from the device over the RDP connection | Exposes high-level device functionality in the remote session by using an optimized protocol for the device type | 
+| Enables ONLY ONE session to use a device at a given time; the local client cannot use the device while an RDP session is using it | Enables any number of sessions to access the device simultaneously, including the local client | 
+
 ## What is RemoteFX?
 RemoteFX was invented and developed by Calista Technologies and quickly acquired by Microsoft in 2008. 
 
@@ -117,3 +126,4 @@ RemoteFX USB redirection is meant to supplement high-level redirections, not to 
 - [Community Posts](https://docs.microsoft.com/en-us/virtualization/community/team-blog/2010/20100317-explaining-microsoft-remotefx)
 - [RDP Properties](https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files)
 - [Supported Clients](https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-app-compare#redirection-support)
+- [Communicating with USB Devices](https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/communicating-with-a-usb-device)
