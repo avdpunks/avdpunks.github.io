@@ -5,7 +5,7 @@ date:   2024-01-04 15:30:00 +0100
 categories: W365
 tags: [HPC,W365,RemoteFX,Intune]
 ---
-# Windows 365 Advanced USB and device redirection
+# Windows 365 Custom USB and device redirection
 
 ![This image shows the AVDPunk Header](/assets/img/2024-01-04/2023-12-21-003-Header.png)
 
@@ -21,7 +21,7 @@ tags: [HPC,W365,RemoteFX,Intune]
 ## Introduction
 Transitioning to a Cloud PC was never that easy and since Microsoft is using the Remote Desktop Protocol (RDP) users can connect peripherals like cameras, USB drives, and printers from remote devices.
 
-To understand which redirections are supported on which platform, I recommend to check this doc [Compare the clients](https://learn.microsoft.com/en-us/windows-365/enterprise/manage-rdp-device-redirections).
+To understand which redirections are supported on which platform, I recommend to check this doc [Compare the clients](https://learn.microsoft.com/en-us/windows-365/enterprise/manage-rdp-device-redirections). This articel and the setting only work with a Windows Client ([Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/users/connect-windows), [Windows 365](https://support.microsoft.com/en-gb/windows/installing-the-windows-365-app-cbb0d4d5-69d4-4f00-b050-6dc7a02d02d0) or [Windows App](https://learn.microsoft.com/en-gb/windows-app/overview)).
 
 USB redirections is becoming even more relevant when thinking of graphic intense workloads, especially with Microsoft announcement and preview for [Windows 365 GPU](https://learn.microsoft.com/en-us/windows-365/enterprise/gpu-cloud-pc) support. 
 
@@ -109,7 +109,7 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 ```
 
 ## Step 3. Testing
-Last but least, Connect via a Remote Desktop Client (Azure Virtual Desktop, Windows 365 or Windows App) to your session host or Cloud PC. You will see a new icon in the connection bar to connect your #USBDEVICE. Make sure it's not in use by any local application. 
+Last but least, connect via a Windows App (Azure Virtual Desktop, Windows 365 or Windows App) to your Cloud PC. You will see a new icon in the connection bar to connect your #USBDEVICE. Make sure the device is not in use by any local application, otherwise the redirection will not work.
 
 Devices can't be used on both local devices and the remote session simultaneously. A device can either be mapped locally or into the virtual desktop. And make sure you install the driver on the virtual desktop in case the device is not a "plug and play" device.
 
