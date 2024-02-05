@@ -109,13 +109,13 @@ The RemoteFX USB redirection feature is disabled by default so lets enable it.
 ```
 
 ## Step 3. Testing
-Last but least, connect via a Windows App (Azure Virtual Desktop, Windows 365 or Windows App) to your Cloud PC. You will see a new icon in the connection bar to connect your #USBDEVICE. Make sure the device is not in use by any local application, otherwise the redirection will not work.
+Last but least, connect via a **Windows App** (Azure Virtual Desktop, Windows 365 or Windows App) to your Cloud PC. You will see a new icon in the connection bar to connect your #USBDEVICE. Make sure the device is not in use by any local application, otherwise the redirection will not work.
 
 Devices can't be used on both local devices and the remote session simultaneously. A device can either be mapped locally or into the virtual desktop. And make sure you install the driver on the virtual desktop in case the device is not a "plug and play" device.
 
 ![WindowsApp](/assets/img/2024-01-04/2023-12-21-003.png)
 
-## Conclusion ## 
+## Conclusion ##
 Windows 365 GPU support will be another game-changer for engineering and graphic intense workloads in the cloud. 
 
 With the RemoteFX Settings you can further increase the user experience by redirecting not only Plug and Play devices to your Cloud PC.
