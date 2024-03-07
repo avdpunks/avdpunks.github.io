@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Azure Virtual Desktop x Private Link"
-date:   2022-01-16 15:25:19 +0100
+date:   2024-02-10 15:25:19 +0100
 categories: AVD
 tags: [AVD,Security]
 ---
