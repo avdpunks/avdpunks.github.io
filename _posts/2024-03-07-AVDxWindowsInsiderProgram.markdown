@@ -62,7 +62,7 @@ Remember to provide feedback to help shape the future of Windows.
 
 ## Resources
 
--[Join the Windows Insider Program and manage Insider settings](https://support.microsoft.com/en-us/windows/join-the-windows-insider-program-and-manage-insider-settings-ef20bb3d-40f4-20cc-ba3c-a72c844b563c)
+- [Join the Windows Insider Program and manage Insider settings](https://support.microsoft.com/en-us/windows/join-the-windows-insider-program-and-manage-insider-settings-ef20bb3d-40f4-20cc-ba3c-a72c844b563c)
 - [Announcing Windows 11 Insider Preview Build 26058 (Canary and Dev Channels)](https://blogs.windows.com/windows-insider/2024/02/14/announcing-windows-11-insider-preview-build-26058-canary-and-dev-channels/)
 - [Releasing Windows 11 Builds 22621.3227 and 22631.3227 to the Release Preview Channel](https://blogs.windows.com/windows-insider/2024/02/15/)
 - [The Windows Insider Program](https://www.microsoft.com/de-de/windowsinsider/)
