@@ -11,7 +11,7 @@ tags: [AVD,W365,InsiderBuild]
 
 ## Table of contents
 1. [How to enable the Windows Insider Preview Build](#How-to-enable-the-Windows-Insider-Preview-Build)
-2. [How to use Windows Insider Preview Build iso images]
+2. [How to use Windows Insider Preview Build iso images](#How-to-use-Windows-Insider-Preview-Build-iso-images)
 3. [Resources](#resources)
 
 ## How to enable the Windows Insider Preview Build
