@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Azure Virtual Desktop x Windows 365 x Windows Insider Program"
+title:  "How to enable the Windows Insider Program for AVD and Windows 365"
 date:   2024-03-07 16:00:00 +0100
 categories: AVD
 tags: [AVD,W365,InsiderBuild]
