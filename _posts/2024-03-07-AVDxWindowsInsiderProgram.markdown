@@ -54,9 +54,9 @@ After the **download is complete**, you’ll need to **restart your PC to instal
 
 **That’s it!** 
 
-You’re now part of the Windows Insider Program and will receive regular updates with new features and improvements. 
+**You’re now part of the Windows Insider Program** and will receive regular updates with new features and improvements. 
 
-Remember to provide feedback to help shape the future of Windows.
+Remember to **provide feedback to help** shape the future of Windows.
 
 >**Note:** Keep in mind that Insider Preview Builds may be less stable than regular releases and could potentially cause issues with your AVD session host or W365 Cloud PC. Make sure to back up your important data before joining the program.
 
