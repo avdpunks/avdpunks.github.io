@@ -7,9 +7,12 @@ tags: [AVD,W365,InsiderBuild]
 ---
 # Azure Virtual Desktop (#AVD) x Windows 365 (#W365) x Windows Insider Program
 
+![This image shows the AVDPunk Header](/assets/img/2024-03-07/2024-03-07-000.png)
+
 ## Table of contents
-1. [How to Enable the Windows Insider Preview Build](#How-to-enable-the-Windows-Insider-Preview-Build)
-2. [Resources](#resources)
+1. [How to enable the Windows Insider Preview Build](#How-to-enable-the-Windows-Insider-Preview-Build)
+2. [How to use Windows Insider Preview Build iso images]
+3. [Resources](#resources)
 
 ## How to enable the Windows Insider Preview Build
 
@@ -59,6 +62,32 @@ After the **download is complete**, you’ll need to **restart your PC to instal
 Remember to **provide feedback to help** shape the future of Windows.
 
 >**Note:** Keep in mind that Insider Preview Builds may be less stable than regular releases and could potentially cause issues with your AVD session host or W365 Cloud PC. Make sure to back up your important data before joining the program.
+
+## How to use Windows Insider Preview Build iso images
+
+1. Open the [**Windows Insider Preview Downloads**](https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewiso) and **login with your Microsoft account**.
+
+![This image shows the Windows Insider Preview Downloads](/assets/img/2024-03-07/2024-03-07-007.png)
+
+2. Scroll down to **select the edition** you want to download, e.g. Windows 11 Insider Preview (Dev Channel), and click **Confirm**.
+
+![This image shows the Windows Insider Preview Downloads - Select Editon](/assets/img/2024-03-07/2024-03-07-008.png)
+
+3. Select the **product language** and click **Confirm** again. 
+
+![This image shows the Windows Insider Preview Downloads - Select Product Language](/assets/img/2024-03-07/2024-03-07-009.png)
+
+4. **Download** the select Windows Insider build. This may take some time, depending on your internet connection.
+
+![This image shows the Windows Insider Preview Downloads - Download](/assets/img/2024-03-07/2024-03-07-010.png)
+
+
+
+
+
+
+
+
 
 ## Resources
 
