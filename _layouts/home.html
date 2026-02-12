@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<header class="header">
+    <div class="header-top">
+        <div>
+            <h1 class="header-title">{{ page.title | default: "Blog Posts" }}</h1>
+            <p class="header-subtitle">{{ page.subtitle | default: site.description }}</p>
+        </div>
+        <div class="header-actions">
+            <input type="text" class="search-box" placeholder="Search posts..." id="searchBox">
+        </div>
+    </div>
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {% for category in site.data.categories %}
+        <button class="filter-btn" data-filter="{{ category.slug }}">{{ category.name }}</button>
+        {% endfor %}
+    </div>
+</header>
+
+<!-- Masonry Grid -->
+<div class="masonry-grid" id="postsGrid">
+    {% for post in site.posts %}
+    <article class="card {% if post.featured %}featured{% endif %}" data-category="{{ post.category | downcase }}" onclick="window.location.href='{{ post.url | relative_url }}'">
+        <div class="card-image {{ post.gradient | default: 'gradient-1' }}">
+            <div class="wave-pattern"></div>
+            <span class="card-tag">{% if post.featured %}Featured{% else %}{{ post.category }}{% endif %}</span>
+            <span class="card-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">{{ post.title }}</h3>
+            <p class="card-description">{{ post.description | truncate: 150 }}</p>
+            <div class="card-footer">
+                <div class="card-meta">
+                    <span class="card-meta-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        {{ post.reading_time | default: "5 min read" }}
+                    </span>
+                    {% if post.tags %}
+                    <span class="card-meta-item">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+                        {{ post.tags | join: ", " }}
+                    </span>
+                    {% endif %}
+                </div>
+                <a href="{{ post.url | relative_url }}" class="read-btn">
+                    Read More
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </a>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
